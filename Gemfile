@@ -20,12 +20,6 @@ gem "rmagick"
 gem "uuid"
 gem "cancan"
 
-
-gem 'sunspot_rails'
-gem 'sunspot_solr'
-gem "sunspot_mongoid", :git => "git://github.com/jugyo/sunspot_mongoid.git", :branch => :master
-
-
 gem 'capistrano'
 gem 'awesome_print'
 
