@@ -1,0 +1,2 @@
+//= require ./uploader
+//= require ./editor

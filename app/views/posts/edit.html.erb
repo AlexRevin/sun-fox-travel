@@ -1,0 +1,62 @@
+<% content_for :header_content do %>
+  <div class='span2'>
+    <div id="uploader" data-spy="affix" data-offset-top="10">
+      <div id="upload-area">
+        <div class="pbox">
+          <p>Перетащите <br /> фотографии <br />сюда</p>
+        </div>
+        <span class="btn btn-primary btn-large fileinput-button">
+          <i class="icon-plus icon-white"></i>        
+          <input id="fileupload" type="file" name="files[]" post-id="<%=@post[:_id]%>" multiple />
+          выбрать
+        </span>
+      </div>    
+    </div>
+  </div>
+  <div class="span10">
+    <div class="row">
+      <div class="span10 top_line">
+        <%= render :partial => "top_line"%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span10">
+        <div class="row">
+          <div class="span10">
+            <div class="hero">
+              <p class="lead">Итак, <%=@post.country.name_ru%>, <%=@post.city.name_ru%></p>
+            </div>                      
+          </div>
+          <div class="row">
+            <div class="viewport">
+              <div class="span4 zoom">
+                <a href="#" image-size="small" viewport-class="zoom" class="btn btn-mini"><i class="icon-zoom-in"></i>&nbsp;уменьшить</a>
+                <a href="#" image-size="big" viewport-class="zoom" class="btn btn-mini"><i class="icon-zoom-in"></i>&nbsp;увеличить</a>
+                <a href="#" viewport-class="fullscreen" class="btn btn-mini full-screen-toggle"><i class="icon-eye-open"></i>&nbsp;полный экран</a>
+              </div>
+              <div class="span4">
+              
+              </div>
+              <div class="span2">
+                <span class="pull-right">
+                  <a href="#" class="btn btn-small btn-success"><i class="icon-ok icon-white"></i>&nbsp;сохранить</a>  
+                </span>
+              
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="span12">
+    <div class="row">
+      <%= render :partial => "/elements/uploader", :locals => {:post => @post}%>
+      <%= render :partial => "/elements/editor"%>
+    </div>
+  </div>
+</div>

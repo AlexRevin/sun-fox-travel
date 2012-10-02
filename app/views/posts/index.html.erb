@@ -1,0 +1,71 @@
+<% content_for :header_content do %>
+  <div class='span2 fox_logo'></div>
+  <div class="row">
+    <div class="span10 top_line">
+      <%= render :partial => "top_line"%>
+    </div>
+    <div class="row">
+      <%= form_for Post.new do |f| %>
+        <div class="span10">
+          <div class="row">
+            <div class="span7 offset3">
+              <div class="wizard-starter" data-title="Скажи, <%=current_user.username %>, не пора ли нам добавить новое путешествие?" data-placement="left">
+                <p class="lead" >Выбери страну и погнали!</p>
+              </div>
+            </div>
+          </div>
+          <div class="row wizard-region-select">
+            <div class="span3"> 
+              <div class="input-prepend">
+                <span class="add-on">страна</span>
+                <input type="text" class="country-field" name="country">
+              </div>
+
+            </div>
+            <div class="span3">
+              <div class="input-prepend">
+                <span class="add-on">город</span><input type="text" class="city-field" name="city">
+              </div>
+            </div>
+            <div class="span2">
+              <button class="btn btn-medium btn-success" type="submit">Поехали</button>            
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="span12">
+    <div class="row">
+      <div class="span3"></div>
+      <div class="span9">
+        <table class="table table-condensed table-hover span9">
+          <thead>
+            <tr>
+              <th class="span1"></th>
+              <th class="span2"></th>
+              <th class="span1"></th>
+              <th class="span4"></th>
+              <th class="span1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts.each do |p| %>
+              <tr>
+                <td><strong><%= link_to raw('<i class="icon-edit"></i>'), edit_post_path(p) %></strong></td>
+                <td><strong><%= link_to "title", edit_post_path(p)%></strong></td>
+                <td><span class="badge"><%= p.asset_collection.try(:assets).try(:count) || 0 %>&nbsp;<i class="icon-picture icon-white"></i></span></td>
+                <td><span class="label label-info"><%= p.country.name_ru %></span>&nbsp;<span class="label"><%= p.city.name_ru %></span></td>
+                <td><strong><%= link_to raw('<i class="icon-remove-circle"></i>'), post_path(p), :method => :delete %></strong></td>
+              </tr>
+            </tr>
+            <% end %>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

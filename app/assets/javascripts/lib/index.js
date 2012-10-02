@@ -1,0 +1,15 @@
+//= require ./underscore
+//= require ./mustache
+//= require ./backbone
+//= require ./backbone-nested-v1.1.2.min
+//= require ./jquery-ui-1.8.23.custom.min
+//= require ./jquery.fileupload
+//= require ./jquery.fileupload-ui
+//= require ./jquery.image
+//= require ./jquery.expandable.min
+//= require ./jquery.xdr-transport
+//= require ./bootstrap
+//= require ./jquery.textarea
+//= require ./jquery.fullscreen
+//= require ./jquery.fileupload-fp
+//= require ./jquery.postmessage-transport

@@ -1,0 +1,17 @@
+<div class="span2">
+  <div id="uploaded-assets" data-spy="affix">
+    <div class="title"><p>Загруженные</p></div>
+    <a href="#" class="up">&nbsp;</a>
+    <ul>
+    </ul>
+    <a href="#" class="down">&nbsp;</a>
+  </div>
+  <script type="text/javascript">
+    var existing_asset_collection = new AssetCollection
+    <% if post.asset_collection.present? %>
+      <% post.asset_collection.assets.each do |a| %>
+        existing_asset_collection.unshift(new Asset(<%= raw a.to_json(:methods =>[:image])%>))
+      <% end %>
+    <% end %>
+  </script>
+</div>

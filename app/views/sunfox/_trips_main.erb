@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="span5">
+    <span class="label label-warning">поездка дня</span>
+    <a href="#" class="thumbnail image-of-the-day">
+      <img src="/assets/IMG_6410.jpg" alt="" data-placement="right">
+    </a>
+  </div>
+  <div class="span4 offset3">
+    <span class="label label-warning">другие поездки</span>
+    <div class="other-trips">
+      <ul class="thumbnails">
+        <% ttls = ["Берлин, Германия", "Лондон, Великобритания", "Афины, Греция", "Париж, Франция"]%>
+        <% 4.times do |i| %>
+        <li class="span2">
+          <a href="#" class="thumbnail">
+            <img src="/assets/th-<%=i+1%>.jpg" alt="" class="other-trips-th">
+          </a>
+          <span class="ttl"><%= ttls.shift %></span>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  
+  
+  <!-- Invivsibles -->
+  <div class="text-of-the-day">
+    <small>
+    И вот как-то поехал я в Швейцарию. И ехал ехал ехал. И приехал. Приехал я значит в Швейцарию. И уехал. Ну красиво там. Горы понимаешь, и все такое. Но дома все-таки лучше. Швейария она такая, да, ну че там делать? Горы одни и коровы, скукота. И горы. Как в пещере блянах.
+    </small>
+  </div>
+  <div class="text-of-the-day-title">
+    <small>Моя поездка в Швейцарию</small>
+  </div>
+</div>

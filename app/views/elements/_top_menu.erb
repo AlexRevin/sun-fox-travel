@@ -1,0 +1,17 @@
+<% 
+  menu_items = [
+    {:short => :main, :title => "Главная", :url => root_path, :user_required => :false},
+    {:short => :search, :title => "Поиск", :url => "#", :user_required => :false},
+    {:short => :posts, :title => "Мои путешествия", :url => posts_path, :user_required => :true},
+    {:short => :settings, :title => "Мои настройки", :url => "#", :user_required => :true}
+  ]
+%>
+<ul class="nav nav-tabs top-tabs">
+  <% menu_items.each do |mi| %>
+    <% active = @active.present? && @active == mi[:short] %>
+    <% active = true if mi[:short] == :main && @active.nil? %>
+    <% next if mi[:user_required] == :true && !user_signed_in? %>
+    <li class="<%="active" if active%> item"><a href="<%=mi[:url]%>"><%=mi[:title]%></a></li>    
+  <% end %>
+</ul>
+<div class="clearfix"></div>

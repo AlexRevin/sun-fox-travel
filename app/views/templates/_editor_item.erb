@@ -1,0 +1,20 @@
+<script id="editor-item-tpl" type="text/template">
+  <div class="editor-item">
+    <div class="image-container {{ viewport}}">
+      <div class="ctrl">
+        <a href="#" class="close-btn-20 destroyer">x</a>
+      </div>
+      [[ if (viewport == "big") { ]]
+        <img src="{{asset_model.image.image.view.url}}" data-asset-id="{{asset_model._id}}" />
+      [[ } else { ]]
+        <img src="{{asset_model.image.image.medium_view.url}}" data-asset-id="{{asset_model._id}}" />
+      [[ } ]]
+
+    </div>
+    <div class="text-editor">
+      <div class="dropdown {{viewport}}">
+        <textarea>{{text}}</textarea>
+      </div>
+    </div>
+  </div>
+</script>

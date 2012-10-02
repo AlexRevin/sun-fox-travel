@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SunFoxTravel</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application" %>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+     <%= yield :header_content %>
+  </div>    
+  <%= yield %>
+</div>
+<script type="text/javascript">
+  $(document).ajaxSend(function(e, xhr, options) {
+   var token = $("meta[name='csrf-token']").attr("content");
+    xhr.setRequestHeader("X-CSRF-Token", "<%=form_authenticity_token.to_s%>");
+  });
+</script>
+  
+<div class="messages">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+</div>
+<%= render :partial => "/templates/index" %>
+</body>
+</html>

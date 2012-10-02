@@ -1,0 +1,277 @@
+// Place all the styles related to the sunfox controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// Front Page
+.fox_logo {
+  margin-top: 6px;
+  height: 200px;
+  background: url(/assets/fox.png) 0px 0 no-repeat;
+}
+.top-row {
+  margin-top: 10px;
+  .enter-button {
+    margin-top: 4px;
+  }
+  .user-auth {
+    text-align: right;
+  }
+}
+.top-tabs {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  li.item {      
+    a {
+      color: #353432;
+    }
+    &.active {
+      font-weight: bold;
+    }
+  }
+}
+
+.logo_text {
+  min-height: 130px;
+  background: url(/assets/l_text.png) -20px 0px no-repeat;
+  .moto {
+    margin: 90px 20px 0 0;
+  }
+}
+
+.search-reviews {
+  border-left: 1px solid #ccc;
+  margin-left: -1px;
+  padding-left: 18px;
+  .search-input {
+    margin-top: 24px;
+    width: 100%;
+  }
+  .search-btn{
+    margin-top: 24px;
+  }
+}
+
+.popular {
+  margin-top: 12px;
+}
+.popular-table {
+  margin: 0 0 0 0;
+  font-size: 11px;
+  td {
+    text-align: center;
+    border-top: none;
+    .total {
+      padding: 1px 4px;
+      background-color: #ccc;
+      margin: 0 0 0 3px;
+      font-weight: bold;
+      color: white;
+      font-size: 9px;
+      line-height: 9px;
+    }
+  }
+}
+
+.text-of-the-day, .text-of-the-day-title {
+  display: none;
+}
+.image-of-the-day{
+  margin: 6px 0 0 0;
+}
+
+.other-trips {
+  margin: 6px 0 0 0;
+  .ttl {
+    font-size: 11px;
+  }
+}
+
+.messages {
+  display: none;
+}
+
+.wizard-starter {
+  padding: 0 0 0 12px;
+}
+
+.wizard-region-select {
+  input {
+    width: 150px;
+  }
+}
+
+
+
+/* uploader */
+#uploader {
+  margin-top: 4px;
+  border: 2px dashed #ddd;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  -webkit-transition: all 0.2s ease-in-out;
+     -moz-transition: all 0.2s ease-in-out;
+       -o-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+  padding: 8px;
+  text-align:center;
+
+  .pbox {
+    margin-top: 14px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 2px 4px;
+    height: 60px;
+  }
+  #upload-area {
+    height: 120px;
+  }
+  .fileinput-button {
+    
+    position: relative;
+    float: left;
+    overflow: hidden;
+    margin-left: 4px;
+    input {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 0;
+      border: solid transparent;
+      border-width: 0 0 100px 200px;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      -moz-transform: translate(-300px, 0) scale(4);
+      direction: ltr;
+      cursor: pointer;
+    }
+  }
+}
+
+#uploaded-assets {
+  .title {
+    margin: 16px 0 0 0;
+    p {
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  }
+  ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: block;
+    .item-preview {
+      position: relative;
+      width: 120px;
+      height: 79px;
+      margin: 4px 0 4px 0;
+      &.loading {
+        background-color: black;
+      }
+    }
+  }
+  .hidden {
+    opacity:0.4;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+  .up {
+    display: block;
+  	width: 0; 
+  	height: 0; 
+  	border-left: 60px solid transparent;
+  	border-right: 60px solid transparent;
+  	border-bottom: 20px solid #ddd;
+  }
+  .down {
+    display: block;
+  	width: 0; 
+  	height: 0; 
+  	border-left: 60px solid transparent;
+  	border-right: 60px solid transparent;
+  	border-top: 20px solid #ddd;
+  }
+}
+
+.borderer {
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+  -webkit-transition: all 0.2s ease-in-out;
+     -moz-transition: all 0.2s ease-in-out;
+       -o-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+}
+
+#editor {
+  min-height: 460px;
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  background-color:#EBF6FA;
+  
+  .placeholder {
+    border: 2px dashed #ddd;
+    padding: 10px 8px;
+    background-color:#7EC2F2;
+    text-align: center;
+    span {
+     text-shadow: #353738 1px 1px 2px;
+      font-size:20px;
+      color: white;
+      font-weight: bold;
+    }
+  }
+  
+  .editor-item {
+     margin: 0 0 14px 0;
+     
+    .image-container {
+      .ctrl {
+        position: relative;
+        top: 0;
+      }
+    &.big {width: 700px;}
+    &.small {width: 400px;}
+    }
+    .text-editor {
+      textarea {
+        margin: 4px 0 0 4px;
+        height: 80px;
+        padding: 3px;
+        background: transparent;
+        border: none;
+        &:focus {
+          background-color: #fff;
+          border: 1px solid #ccc;
+        }
+      }
+      .dropdown.big>textarea {
+        width: 684px;
+      }
+      .dropdown.small>textarea {
+        width: 360px;
+      }
+      .ctrl {
+        text-align: right;
+        margin: 4px 0 4px 4px;
+      }
+    }
+  }
+}
+.viewport {
+  .zoom {
+  }
+  margin-left: 20px;
+}
