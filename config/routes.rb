@@ -9,7 +9,10 @@ Sunfoxtravel::Application.routes.draw do
 
   get "sunfox/index"
   
-  resources :posts
+  resources :posts do
+    resources :post_items, :controller => "posts/post_items"
+  end
+  
   resources :assets
   
   resources :api do

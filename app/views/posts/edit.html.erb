@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="span10">
+      <div class="span10 fix-header-height">
         <div class="row">
           <div class="span10">
             <div class="hero">
@@ -39,7 +39,7 @@
               </div>
               <div class="span2">
                 <span class="pull-right">
-                  <a href="#" class="btn btn-small btn-success"><i class="icon-ok icon-white"></i>&nbsp;сохранить</a>  
+                  <a href="#" class="btn btn-small btn-success" id="save_post"><i class="icon-ok icon-white"></i>&nbsp;сохранить</a>  
                 </span>
               
               </div>
@@ -55,8 +55,8 @@
 <div class="row">
   <div class="span12">
     <div class="row">
-      <%= render :partial => "/elements/uploader", :locals => {:post => @post}%>
-      <%= render :partial => "/elements/editor"%>
+      <%= render :partial => "/elements/uploader", :locals => {:post => @post} %>
+      <%= render :partial => "/elements/editor", :locals => {:post => @post}%>
     </div>
   </div>
 </div>

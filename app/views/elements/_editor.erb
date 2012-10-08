@@ -3,3 +3,13 @@
     <div class="placeholder borderer"><span>Перетащите сюда фотографию</span></div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var existing_item_collection = new ItemCollection
+  existing_item_collection.setPostIt('<%=post.id%>')
+  <% if post.post_items.present? %>
+    <% post.post_items.each do |a| %>
+      existing_item_collection.unshift(new Item(<%= raw a.to_json%>))
+    <% end %>
+  <% end %>
+</script>

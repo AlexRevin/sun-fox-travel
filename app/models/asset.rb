@@ -1,6 +1,8 @@
 class Asset
   include Mongoid::Document
   
+  field :included, type: Boolean
+  
   belongs_to :post
   belongs_to :user
   belongs_to :asset_collection

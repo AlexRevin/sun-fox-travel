@@ -9,15 +9,4 @@ class City
   field :latitude, :type    => String
   field :longitude, :type   => String
 
-  include Sunspot::Mongoid
-  searchable do
-     text :name_en, :as => :code_textp
-     text :name_ru, :as => :code_textp
-     text :country_en, :as =>:code_textp do
-       country.name_en
-     end
-     text :country_ru, :as =>:code_textp do
-       country.name_ru
-     end
-   end
 end

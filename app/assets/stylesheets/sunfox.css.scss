@@ -38,6 +38,10 @@
   }
 }
 
+.fix-header-height {
+  height: 90px;
+}
+
 .search-reviews {
   border-left: 1px solid #ccc;
   margin-left: -1px;
@@ -161,25 +165,39 @@
       font-weight: bold;
     }
   }
-  ul {
-    display: block;
-    margin: 0;
-    padding: 0;
+  .asset-container {
+    padding-top: 10px;
+    width: 140px;
+    direction:ltr;
+    max-height: 415px;
+    overflow:scroll;
   }
-  li {
+  .asset-item {
+    direction:ltr;
     display: block;
+/*    position: absolute;*/
     .item-preview {
       position: relative;
       width: 120px;
       height: 79px;
       margin: 4px 0 4px 0;
       &.loading {
-        background-color: black;
+        text-align: center;
+        .title {
+          font-size: 10px;
+        }
+        .percents > span {
+          font-weight: bold;
+        }
+        border: 1px dashed #ccc
+      }
+      &.hidden {
+        opacity:0.4;
+      }
+      .destroyer {
+        position: relative;
       }
     }
-  }
-  .hidden {
-    opacity:0.4;
   }
   a:hover {
     text-decoration: none;

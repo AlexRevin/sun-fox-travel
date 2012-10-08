@@ -1,6 +1,6 @@
 <script id="asset-preview-template" type="text/template">
   [[ if (typeof(image.image.md_thumb) !== "undefined") { ]]
-    <div class="item-preview" style="background: url({{image.image.md_thumb.url}}) 0 0 no-repeat">
+    <div class="item-preview {{ (visible) ? '' : 'hidden' }}" style="background: url({{image.image.md_thumb.url}}) 0 0 no-repeat">
       <div class="destroyer">
         <a href="#">
           <span class="close-btn-20">
@@ -11,6 +11,12 @@
     </div>
   [[ } else{ ]]
     <div class="item-preview loading">
+      <div class="title">
+        <p>Загружается</p>
+      </div>
+      <div class="percents" data-model-cid="{{cid}}">
+        <span>0%</span>
+      </div>
     </div>
   [[ } ]]
   

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+gem "thin"
 
 gem "mongoid", "~> 3.0.0"
 gem "bson_ext", "~> 1.5"
@@ -12,7 +13,8 @@ gem 'omniauth-vkontakte'
 gem "carrierwave"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem "state_machine"
-gem "rmagick"
+# gem "rmagick"
+gem "mini_magick"
 gem "uuid"
 gem "cancan"
 

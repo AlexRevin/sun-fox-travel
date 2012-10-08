@@ -5,4 +5,6 @@ class Post
   belongs_to :city
   belongs_to :country
   
+  embeds_many :post_items
+  
 end

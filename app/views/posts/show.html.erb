@@ -1,0 +1,24 @@
+<% content_for :header_content do %>
+  <div class='span2 fox_logo'></div>
+  <div class="row">
+    <div class="span10 top_line">
+      <%= render :partial => "top_line"%>
+    </div>
+    <div class="row">
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="span12">
+  <% @post.post_items.each do |pi| %>
+    <div class="item-block">
+      <div class="image">
+        <img src="<%=pi.asset.image.view.url%>" alt="" />
+      </div>
+      <div class="text">
+        <span><%=pi.text%></span>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

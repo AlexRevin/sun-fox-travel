@@ -18,13 +18,13 @@
             <div class="span3"> 
               <div class="input-prepend">
                 <span class="add-on">страна</span>
-                <input type="text" class="country-field" name="country">
+                <input type="text" class="country-field" name="country" autocomplete="off">
               </div>
 
             </div>
             <div class="span3">
               <div class="input-prepend">
-                <span class="add-on">город</span><input type="text" class="city-field" name="city">
+                <span class="add-on">город</span><input type="text" class="city-field" name="city" autocomplete="off">
               </div>
             </div>
             <div class="span2">
@@ -39,11 +39,12 @@
 <div class="row">
   <div class="span12">
     <div class="row">
-      <div class="span3"></div>
-      <div class="span9">
+      <div class="span2"></div>
+      <div class="span10">
         <table class="table table-condensed table-hover span9">
           <thead>
             <tr>
+              <th class="span1"></th>
               <th class="span1"></th>
               <th class="span2"></th>
               <th class="span1"></th>
@@ -55,6 +56,7 @@
             <% @posts.each do |p| %>
               <tr>
                 <td><strong><%= link_to raw('<i class="icon-edit"></i>'), edit_post_path(p) %></strong></td>
+                <td><%= link_to "Показать", post_path(p) %>
                 <td><strong><%= link_to "title", edit_post_path(p)%></strong></td>
                 <td><span class="badge"><%= p.asset_collection.try(:assets).try(:count) || 0 %>&nbsp;<i class="icon-picture icon-white"></i></span></td>
                 <td><span class="label label-info"><%= p.country.name_ru %></span>&nbsp;<span class="label"><%= p.city.name_ru %></span></td>

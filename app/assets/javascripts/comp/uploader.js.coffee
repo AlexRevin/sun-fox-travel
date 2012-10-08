@@ -1,7 +1,7 @@
 window.Asset = class Asset extends Backbone.Model
   idAttribute: "_id"
   urlRoot: "/assets"
-  
+    
   defaults:
     image:
       image:
@@ -14,18 +14,23 @@ window.Asset = class Asset extends Backbone.Model
         url: ""
     visible: true
         
-  initialize:  ->
-    
+  initialize: (attrs) =>
+    @set("visible", false) if attrs.included
   is_empty: =>
     @.get("image").image.url.length == 0
     
+  
+  
     
 window.AssetCollection = class AssetCollection extends Backbone.Collection
   model: Asset
   url: "/assets"
   
+  
+  
 window.AssetView = class AssetView extends Backbone.View
-  tagName: "li"
+  tagName: "div"
+  className: "asset-item"
   
   events: {
     "click .item-preview .destroyer a": "destroyItem"
@@ -33,11 +38,9 @@ window.AssetView = class AssetView extends Backbone.View
   
   destroyItem: (ev) =>
     ev.preventDefault()
-    @model.destroy()
-    @remove()
-    if $("#uploaded-assets li:hidden").not(".hidden").size() > 0
-      $("#uploaded-assets li:hidden").not(".hidden").first().show()
-      @slider_position-=1
+    if @model.get("visible")
+      @model.destroy()
+      @remove()
     @
     
   hide: (args) =>
@@ -48,18 +51,25 @@ window.AssetView = class AssetView extends Backbone.View
         
   initialize: (opts) ->
     @template = _.template $("#asset-preview-template").html()
+    
     @model.on "change:image",  =>
       @render()
+      
     @model.on "change:visible", =>
+      opt = @model.get("_id")
+      el = $(".item-preview[asset-id=#{opt}]")
       if @model.get("visible")
-        @$el.removeClass("hidden")
+        el.removeClass("hidden")
       else
-        @$el.addClass("hidden")
+        el.addClass("hidden")
 
   render: =>
-    @$el.html @template(@model.toJSON())
+    jso = @model.toJSON()
+    jso.cid = @model.cid
+    @$el.html @template(jso)
     @$el.find(".item-preview").attr("asset-id", @model.id)
     @ 
+  
   
 
 window.UploaderView = class UploaderView extends Backbone.View
@@ -75,19 +85,15 @@ window.UploaderView = class UploaderView extends Backbone.View
     
     @collection.each (asset) =>
       item_view = new AssetView {model: asset}
-      $("#uploaded-assets>ul").append item_view.render().el
+      el = item_view.render().el
+      $(".asset-container").append el
       
     @collection.on "add", (asset) =>
       item_view = new AssetView {model: asset}
-      $("#uploaded-assets>ul").append item_view.render().el
-      @setSlider()
+      el = item_view.render().el
+      $(".asset-container").append el
       
     @collection.on "remove", =>
-      
-      
-    $(".up").bind "click", @scrollerUp
-    $(".down").bind "click", @scrollerDown
-    @setSlider()
       
   attachUploader:  =>
     up = @$("#fileupload")
@@ -98,36 +104,20 @@ window.UploaderView = class UploaderView extends Backbone.View
       dataType: 'json'
       fileInput: $ "#fileupload"
       dropZone: $ "#upload-area"
-
+      progress: (e, data) =>
+        prc = parseInt(data.loaded / data.total * 100, 10)
+        $("[data-model-cid=#{data.context}] > span").html("#{prc} %")
       add: (e, data) =>
         @collection.add()
+        data.context = @collection.last().cid
         data.submit()
       send: (e, data) =>
       done: (e, data) =>
         m = @collection.find (item) ->
           img = item.is_empty()
         m.set data.result
-        # $("#upload-area").height($("#upload-area").parent(".span9").height())
     })
     @uploader_attached = true
-    
-    
-  scrollerUp:(ev) =>
-    ev.preventDefault()
-    console.log "#{@slider_position} + 1 < #{@step}"
-    @slider_position -=@step unless @slider_position+1 < @step
-    @setSlider()
-    
-  scrollerDown:(ev) =>
-    ev.preventDefault()
-    console.log "#{@collection.length} < #{@slider_position} + #{@step} + 1"
-    @slider_position +=@step unless @collection.length < @slider_position + @step + 1
-    @setSlider()
-      
-  setSlider: =>
-    $("#uploaded-assets li").hide();
-    $("#uploaded-assets li:lt(#{@slider_position+@step}):gt(#{@slider_position-1})").show()
-    
       
   render: =>
     @attachUploader()
