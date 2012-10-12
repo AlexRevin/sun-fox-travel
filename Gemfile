@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem "thin"
+# gem "thin"
 
 gem "mongoid", "~> 3.0.0"
 gem "bson_ext", "~> 1.5"
