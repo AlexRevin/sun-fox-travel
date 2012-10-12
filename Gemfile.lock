@@ -81,6 +81,7 @@ GEM
     jwt (0.1.5)
       multi_json (>= 1.0)
     kgio (2.7.4)
+    libv8 (3.3.10.4)
     macaddr (1.6.1)
       systemu (~> 2.5.0)
     mail (2.4.4)
@@ -165,6 +166,8 @@ GEM
     state_machine (1.1.2)
     subexec (0.2.2)
     systemu (2.5.2)
+    therubyracer (0.10.2)
+      libv8 (~> 3.3.10)
     thin (1.4.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -208,6 +211,7 @@ DEPENDENCIES
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
   state_machine
+  therubyracer
   thin
   uglifier (>= 1.0.3)
   unicorn
