@@ -100,7 +100,6 @@ window.UploaderView = class UploaderView extends Backbone.View
     up.fileupload({
       url: '/assets/'
       formData: {post_id: up.attr("post-id")}
-      sequentialUploads: true
       dataType: 'json'
       fileInput: $ "#fileupload"
       dropZone: $ "#upload-area"
