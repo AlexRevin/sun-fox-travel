@@ -20,6 +20,7 @@ gem "cancan"
 
 gem 'capistrano'
 gem 'awesome_print'
+gem 'dalli'
 
 
 
