@@ -205,7 +205,11 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :facebook, '352196031533610', '215844b3bbf75acec325cf41fe592548'
+  if Rails.env.production?
+    config.omniauth :facebook, '352196031533610', '215844b3bbf75acec325cf41fe592548'
+  else
+    config.omniauth :facebook, '268923283210346', '353d3a45b91c46a2ca224a057438864e'
+  end
   # config.omniauth :vkontakte, 'APP_ID', 'APP_SECRET'
 
   # ==> Warden configuration
