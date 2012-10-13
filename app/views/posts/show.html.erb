@@ -13,7 +13,9 @@
   <% @post.post_items.each do |pi| %>
     <div class="item-block">
       <div class="image">
-        <img src="<%=pi.asset.image.view.url%>" alt="" />
+        <% if pi.asset.present? %>
+          <img src="<%=pi.asset.image.view.url%>" alt="" />
+        <% end %>
       </div>
       <div class="text">
         <span><%=pi.text%></span>
