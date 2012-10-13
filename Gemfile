@@ -21,6 +21,7 @@ gem "cancan"
 gem 'capistrano'
 gem 'awesome_print'
 gem 'dalli'
+gem "fog"
 
 
 
@@ -45,7 +46,8 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+# gem 'unicorn'
+gem "thin"
 
 
 # Deploy with Capistrano

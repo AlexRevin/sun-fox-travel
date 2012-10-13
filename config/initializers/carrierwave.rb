@@ -1,3 +1,12 @@
+CarrierWave.configure do |config|
+  config.fog_credentials = {
+    :provider           => 'Rackspace',
+    :rackspace_username => 'at0mic',
+    :rackspace_api_key  => '316878bfef5241e24c21fa61ccb880dd'
+  }
+  config.fog_directory = 'cdn1'
+end
+
 module CarrierWave
   # module RMagick
   # 
