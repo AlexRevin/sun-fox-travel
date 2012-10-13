@@ -37,7 +37,7 @@ class AssetUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   process :strip
-  process :quality => "80"
+  process :quality => "90"
   process :autorotate
   
   version :md_thumb do
