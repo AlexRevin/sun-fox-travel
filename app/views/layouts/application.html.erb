@@ -10,6 +10,7 @@
       xhr.setRequestHeader("X-CSRF-Token", "<%=form_authenticity_token.to_s%>");
     });
   </script>
+  <%= javascript_include_tag "application" %>
 </head>
 <body>
 <div class="container">
@@ -25,7 +26,7 @@
 </div>
 <%= render :partial => "/service/fb" %>
 <%= render :partial => "/service/ga" %>
-<%= javascript_include_tag "application" %>
+
 
 <%= render :partial => "/templates/index" %>
 </body>
