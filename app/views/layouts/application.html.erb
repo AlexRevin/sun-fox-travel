@@ -4,6 +4,12 @@
   <title>SunFoxTravel</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+    $(document).ajaxSend(function(e, xhr, options) {
+     var token = $("meta[name='csrf-token']").attr("content");
+      xhr.setRequestHeader("X-CSRF-Token", "<%=form_authenticity_token.to_s%>");
+    });
+  </script>
 </head>
 <body>
 <div class="container">
@@ -20,12 +26,7 @@
 <%= render :partial => "/service/fb" %>
 <%= render :partial => "/service/ga" %>
 <%= javascript_include_tag "application" %>
-<script type="text/javascript">
-  $(document).ajaxSend(function(e, xhr, options) {
-   var token = $("meta[name='csrf-token']").attr("content");
-    xhr.setRequestHeader("X-CSRF-Token", "<%=form_authenticity_token.to_s%>");
-  });
-</script>
+
 <%= render :partial => "/templates/index" %>
 </body>
 </html>
