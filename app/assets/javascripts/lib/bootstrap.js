@@ -623,14 +623,12 @@
       $parent = getParent($this)
 
       isActive = $parent.hasClass('open')
-
       clearMenus()
 
       if (!isActive) {
         $parent.toggleClass('open')
         $this.focus()
       }
-
       return false
     }
 
@@ -1714,7 +1712,6 @@
     }
 
   , process: function (items) {
-      console.log(items)
       var that = this
 
       items = $.grep(items, function (item) {

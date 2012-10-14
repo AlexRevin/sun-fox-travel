@@ -4,7 +4,6 @@
   <title>SunFoxTravel</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
-  <%= javascript_include_tag "application" %>
 </head>
 <body>
 <div class="container">
@@ -13,17 +12,18 @@
   </div>    
   <%= yield %>
 </div>
+  
+<div class="messages">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+</div>
+<%= javascript_include_tag "application" %>
 <script type="text/javascript">
   $(document).ajaxSend(function(e, xhr, options) {
    var token = $("meta[name='csrf-token']").attr("content");
     xhr.setRequestHeader("X-CSRF-Token", "<%=form_authenticity_token.to_s%>");
   });
 </script>
-  
-<div class="messages">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-</div>
 <%= render :partial => "/templates/index" %>
 </body>
 </html>
