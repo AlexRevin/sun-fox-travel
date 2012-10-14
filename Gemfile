@@ -22,6 +22,7 @@ gem 'capistrano'
 gem 'awesome_print'
 gem 'dalli'
 gem "fog"
+gem "aws-sdk"
 
 
 

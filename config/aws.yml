@@ -1,0 +1,15 @@
+defaults: &defaults
+  access_key_id: 'AKIAIBYBFQO3FLCHRAKQ'
+  secret_access_key: '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'
+  
+development:
+  <<: *defaults
+  
+staging:
+  <<: *defaults
+  
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -8,11 +8,7 @@ _.templateSettings =
   
 
 $(document).ready (args) ->
-  
-  $('.search-input').tooltip({
-    trigger: "manual"
-  })
-  
+    
   $('.search-input').tooltip("show")
   
   $(".image-of-the-day img").imagesLoaded (args) ->

@@ -49,6 +49,7 @@ Sunfoxtravel::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
+  config.action_mailer.delivery_method = :amazon_ses
   # config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode

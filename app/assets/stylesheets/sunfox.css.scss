@@ -12,10 +12,11 @@
 .top-row {
   margin-top: 10px;
   .enter-button {
+    a:hover, a:focus {
+      background-image: none;
+      background-color: transparent;
+    }
     margin-top: 4px;
-  }
-  .user-auth {
-    text-align: right;
   }
 }
 .top-tabs {
