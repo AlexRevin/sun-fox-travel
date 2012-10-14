@@ -3,6 +3,7 @@ class PostItem
   
   field :text, type: String
   field :asset_id, type: String
+  field :pos, type: Integer
   
   embedded_in :post
   

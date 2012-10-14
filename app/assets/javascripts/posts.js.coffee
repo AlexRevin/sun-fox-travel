@@ -18,5 +18,6 @@ $(document).ready (args) ->
   editor_box = new window.EditorView({
     item_collection: item_collection
     asset_collection: asset_collection
+    upload_box: upload_box
   })
   editor_box.render()

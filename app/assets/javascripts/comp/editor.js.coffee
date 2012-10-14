@@ -75,7 +75,7 @@ window.ItemCollection = class ItemCollection extends Backbone.Collection
   url: ->
     "/posts/#{@post_id}/"
     
-  setPostIt: (post_id) =>
+  setPostId: (post_id) =>
     @post_id = post_id
   
   
@@ -88,14 +88,17 @@ window.EditorView = class EditorView extends Backbone.View
     @item_collection = opts.item_collection
     @size = $.cookie("viewport.image-size") || "big"
     
+    @$el.sortable()
+    
     $("#uploaded-assets .asset-item").live 'mouseover', ->
       $(this).draggable({
         revert: true
         containment: 'window'
         scroll: false
         helper: 'clone'
+        connectToSortable: "#editor"
       })
-
+    
     @$el.droppable {
       drop: (evt, ui) =>
         @createElement $(evt.srcElement).attr("asset-id")
@@ -103,6 +106,8 @@ window.EditorView = class EditorView extends Backbone.View
       accept: ".ui-draggable"
       greedy: true
     }
+    
+    
     
     @item_collection.each (item) =>
       item.prefill_asset @asset_collection
@@ -116,6 +121,10 @@ window.EditorView = class EditorView extends Backbone.View
       e_elem = new EditorElement {model: item, parent: @}
       $("#editor .placeholder").before e_elem.render().el
     
+    
+    @attachViewPortControl()
+          
+  attachViewPortControl: =>
     $(".viewport a").bind "click", (ev) =>
       switch $(ev.target).attr("viewport-class")
         when "zoom"
@@ -133,6 +142,7 @@ window.EditorView = class EditorView extends Backbone.View
           success: (model, response) =>
           error: (model, response) =>
       evt.preventDefault()
+    
         
   createElement: (item_id) =>
     found = @asset_collection.find (item) =>
