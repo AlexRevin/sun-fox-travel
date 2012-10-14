@@ -11,7 +11,7 @@ class AssetsController < ApplicationController
       :user_id => current_user[:_id]
     ) unless ac.present?
     
-    asset = ac.assets.create :image => params[:files].first, :post_id => params[:post_id], :user_id => current_user[:_id]
+    asset = ac.assets.create :image => params[:files].first, :post_id => params[:post_id], :user_id => current_user[:_id], :active => true
     respond_to do |format|
       format.json {
         render :json => asset, :methods => [:thumb, :image]
