@@ -9,6 +9,8 @@ class Asset
 
   mount_uploader :image, AssetUploader
   
+  default_scope where(active: true)
+  
   def original
     self.image
   end

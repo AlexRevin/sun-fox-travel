@@ -8,6 +8,7 @@ window.Item = class Item extends Backbone.Model
     return "post_items/#{@get('_id')}" if @get("_id")?
     return "post_items/"
   defaults:
+    _id: null
     asset_model: null
     text: ""
     viewport: "big"
@@ -33,7 +34,9 @@ window.EditorElement = class EditorElement extends Backbone.View
   
   destroyItem: (ev) =>
     ev.preventDefault()
-    @model.get("asset_model").set("visible", true)
+    am = @model.get("asset_model")
+    if am?
+      am.set "visible", true
     @model.destroy()
     @remove()
     
@@ -41,11 +44,13 @@ window.EditorElement = class EditorElement extends Backbone.View
     parent = opts.parent
     @template =_.template $("#editor-item-tpl").html()
     @model.on "change:viewport", @light_render
-    # @model.on "change", @light_render
+    @model.on "change:_id", @light_render
     
   light_render: (caller) =>
     a = JSON.parse(JSON.stringify(@model.toJSON()))
     @$el.html(@template(a))
+    @$el.attr "id", @model.get("_id") || null
+    @$el.addClass("sorter")
     setTimeout =>
       @$el.find("textarea").autosize();
     200
@@ -66,7 +71,10 @@ window.EditorElement = class EditorElement extends Backbone.View
     ev.preventDefault()
     el = $ ev.target
     @model.set "text", el.val()
-    @model.save ["asset_id", "text"]
+    @model.save(["asset_id", "text"],
+      success: (model, resp) =>
+        model.set("_id", resp._id)
+    )
     
     
     
@@ -88,8 +96,22 @@ window.EditorView = class EditorView extends Backbone.View
     @item_collection = opts.item_collection
     @size = $.cookie("viewport.image-size") || "big"
     
-    @$el.sortable()
-    
+    @$el.sortable
+      forcePlaceholderSize: true
+      axis: "y"
+      scroll: true
+      items: "> .sorter"
+      tolerance: "pointer"
+      receive: (evt, ui) =>
+        @createElement $(ui.item).find(".item-preview").attr("asset-id")  
+        @sortableCallback()
+      start: (evt, ui) =>
+        $(".text-editor").hide()
+      stop: (evt, ui) =>
+        $(".text-editor").show()
+      update: (evt, ui) =>
+        @sortableCallback()
+        
     $("#uploaded-assets .asset-item").live 'mouseover', ->
       $(this).draggable({
         revert: true
@@ -98,17 +120,7 @@ window.EditorView = class EditorView extends Backbone.View
         helper: 'clone'
         connectToSortable: "#editor"
       })
-    
-    @$el.droppable {
-      drop: (evt, ui) =>
-        @createElement $(evt.srcElement).attr("asset-id")
-      activate: (evt, ui) =>
-      accept: ".ui-draggable"
-      greedy: true
-    }
-    
-    
-    
+        
     @item_collection.each (item) =>
       item.prefill_asset @asset_collection
       item.set "viewport", @size
@@ -123,6 +135,9 @@ window.EditorView = class EditorView extends Backbone.View
     
     
     @attachViewPortControl()
+    
+  sortableCallback: =>
+    console.log @$el.sortable('toArray')
           
   attachViewPortControl: =>
     $(".viewport a").bind "click", (ev) =>

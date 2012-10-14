@@ -1,7 +1,6 @@
 class AssetsController < ApplicationController
   
   def create
-    ap current_user.inspect
     if Post.find(params[:post_id]).user != current_user
       render :json => "error"
       return
@@ -22,7 +21,7 @@ class AssetsController < ApplicationController
   end
   
   def destroy
-    Asset.find(params[:id]).destroy
+    Asset.find(params[:id]).update_attribute :active, false
     render :json => {:text => "ok"}
   end
 end
