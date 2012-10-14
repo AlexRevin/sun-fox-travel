@@ -8,6 +8,7 @@ window.Item = class Item extends Backbone.Model
     return "post_items/#{@get('_id')}" if @get("_id")?
     return "post_items/"
   defaults:
+    pos: 0
     _id: null
     asset_model: null
     text: ""
@@ -85,13 +86,14 @@ window.ItemCollection = class ItemCollection extends Backbone.Collection
     
   setPostId: (post_id) =>
     @post_id = post_id
-  
+    window.post_id = post_id
   
   
 window.EditorView = class EditorView extends Backbone.View
   el: "#editor"
   
   initialize: (opts) =>
+    @position_counter = 0
     @asset_collection = opts.asset_collection
     @item_collection = opts.item_collection
     @size = $.cookie("viewport.image-size") || "big"
@@ -136,8 +138,14 @@ window.EditorView = class EditorView extends Backbone.View
     
     @attachViewPortControl()
     
+  postsUrl: =>
+    "/posts/#{window.post_id}"
+    
   sortableCallback: =>
-    console.log @$el.sortable('toArray')
+    $.ajax "#{@postsUrl()}/update_positions/",
+      type: "POST",
+      data: 
+        positions: @$el.sortable('toArray')
           
   attachViewPortControl: =>
     $(".viewport a").bind "click", (ev) =>
@@ -164,6 +172,6 @@ window.EditorView = class EditorView extends Backbone.View
       item.id == item_id
     if found? && found.has("image")?
       found.set("visible", false)
-      @item_collection.add({asset_model: found, viewport: @size, asset_id: item_id})
+      @item_collection.add({asset_model: found, viewport: @size, asset_id: item_id}, pos: (@position_counter+=1))
     else
     

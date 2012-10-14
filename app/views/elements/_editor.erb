@@ -8,7 +8,7 @@
   var existing_item_collection = new ItemCollection
   existing_item_collection.setPostId('<%=post.id%>')
   <% if post.post_items.present? %>
-    <% post.post_items.each do |a| %>
+    <% post.post_items.asc(:pos).each do |a| %>
       existing_item_collection.unshift(new Item(<%= raw a.to_json%>))
     <% end %>
   <% end %>

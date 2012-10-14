@@ -16,7 +16,19 @@ class PostsController < ApplicationController
     else
       redirect :back
     end
-    
+  end
+  
+  def update_positions
+    if (p=Post.find(params[:id])).user_id == current_user[:_id]
+      ps = params[:positions]
+      p.post_items.each do |pi|
+        pi.update_attribute :pos, ps.index{|x| x == pi[:_id].to_s}
+      end
+      
+      render :text => "ok"
+    else
+      render :status => 404
+    end
   end
   
   def show

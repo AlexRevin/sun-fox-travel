@@ -10,6 +10,9 @@ Sunfoxtravel::Application.routes.draw do
   get "sunfox/index"
   
   resources :posts do
+    member do
+      post "update_positions"
+    end
     resources :post_items, :controller => "posts/post_items"
   end
   
