@@ -55,17 +55,28 @@ class User
   field :authentication_token, :type => String
   
   def self.find_for_facebook_oauth access_token
-      if user = User.where(:url => access_token.info.urls.Facebook).first
-        user
-      else 
-        User.create!(
-          :provider => access_token.provider, 
-          :url => access_token.info.urls.Facebook, 
-          :username => access_token.extra.raw_info.name, 
-          :nickname => access_token.extra.raw_info.username, 
-          :email => access_token.extra.raw_info.email, 
-          :password => Devise.friendly_token[0,20]
-        ) 
+    if user = User.where(:url => access_token.info.urls.Facebook).first
+      user
+    else 
+      u = User.new(
+        :provider => access_token.provider, 
+        :url => access_token.info.urls.Facebook, 
+        :username => access_token.extra.raw_info.name, 
+        :nickname => access_token.extra.raw_info.username, 
+        :email => access_token.extra.raw_info.email, 
+        :password => Devise.friendly_token[0,20],
+        :confirmed_at => Time.now.utc
+      )
+      u.skip_confirmation!
+      u.save!
+      u
+    end
+  end
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
       end
     end
+  end
 end
