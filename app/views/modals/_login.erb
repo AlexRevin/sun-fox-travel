@@ -7,25 +7,28 @@
   <div class="row">    
     <div class="span3">
       <h4>Вход</h4>
-      <form method="post" action='' name="login_form">
-        <span><input type="text" class="span3 m-wrap" name="eid" id="email" placeholder="email"></span>
-        <span><input type="password" class="span3 m-wrap" name="passwd" placeholder="пароль"></span>
-        <span><label for="checkbox" class="checkbox m-checkbox m-wrap"><input type="checkbox" name="remember" class="m-wrap"> запомнить</label></span>
+      <%= form_for(:user, :url => session_path(:user)) do |f| %>
+        <p><%= f.email_field :email, :class=>"span3 m-wrap", :placeholder => "email" %></p>
+        <p><%= f.password_field :password, :class=>"span3 m-wrap", :placeholder => "пароль" %></p>
+        <span><label for="user_remember_me" class="checkbox m-checkbox m-wrap"><%= f.check_box :remember_me, :class=>"m-wrap"%> запомнить</label></span>
         <span><button type="submit" class="m-btn blue">Войти</button>
-          <a href="#">Забыл пароль?</a>
+          <%- if controller_name != 'passwords' %>
+            <%= link_to "Забыл пароль?", new_password_path(:user) %><br />
+          <% end -%>
         </span>
-      </form>  
+      <% end %>  
     </div>
     
     <div class="span3 well">
       <h4>Регистрация</h4>
-      <form method="post" action='' name="login_form">
-        <p><input type="text" class="span3 m-wrap" name="eid" id="email" placeholder="email"></p>
-        <p><input type="password" class="span3 m-wrap" name="passwd" placeholder="пароль"></p>
-        <p><input type="password" class="span3 m-wrap" name="passwd2" placeholder="пароль еще раз"></p>
+      <%= form_for(:user, :url => registration_path(:user)) do |f| %>
+        <p><%= f.email_field :email, :class=>"span3 m-wrap", :placeholder => "email", :autocomplete => "off" %></p>
+        <p><%= f.text_field :username, :class=>"span3 m-wrap", :placeholder => "как вас зовут?", :autocomplete => "off" %></p>
+        <p><%= f.password_field :password, :class=>"span3 m-wrap", :placeholder => "пароль", :autocomplete => "off" %></p>
+        <p><%= f.password_field :password_confirmation, :class=>"span3 m-wrap", :placeholder => "пароль еще раз", :autocomplete => "off" %></p>
         <p><button type="submit" class="m-btn blue">Зарегистрироваться</button>
         </p>
-      </form>  
+      <% end %>
 
     </div>
   </div>

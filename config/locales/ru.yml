@@ -1,0 +1,22 @@
+ru:
+  mongoid:
+    models:
+      user: "Пользователь"
+    attributes:
+      user:
+        email: "Мэйл:"
+        password: "Пароль:"
+        confirmation_token: "Код подтверждения"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Введите мэйл"
+              taken: "уже зарегистрирован"
+            password:
+              blank: "пустой"
+              confirmation: не совпадают
+              too_short: "слишком короткий"
+            confirmation_token:
+              invalid: "Код подтверждения неверен"

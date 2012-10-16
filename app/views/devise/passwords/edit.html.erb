@@ -1,0 +1,16 @@
+<% content_for :header_content do %>
+  <%= render :partial => "/shared/header_content"%>
+<% end %>
+<div class="span5 well offset3">
+  <h4>Редактирование пароля</h4>
+
+
+  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+    <p><%= f.password_field :password, :class=>"span3 m-wrap m-ctrl-large", :placeholder => "пароль" %></p>
+    <p><%= f.password_field :password_confirmation, :class=>"span3 m-wrap m-ctrl-large", :placeholder => "пароль еще раз" %></p>
+    <p><button type="submit" class="m-btn blue">Сменить</button>
+  <% end %>
+
+</div>

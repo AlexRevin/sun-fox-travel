@@ -11,11 +11,11 @@ class User
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   # :database_authenticatable, :registerable, :recoverable,
-
   
   
   devise :token_authenticatable, :database_authenticatable, :registerable,
-         :rememberable, :trackable, :validatable, :omniauthable
+         :rememberable, :trackable, :validatable, :omniauthable, :confirmable,
+         :recoverable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -23,6 +23,8 @@ class User
 
   validates_presence_of :email
   validates_presence_of :encrypted_password
+  
+  field :username,   :type => String
   
   ## Recoverable
   field :reset_password_token,   :type => String
@@ -39,10 +41,10 @@ class User
   field :last_sign_in_ip,    :type => String
 
   ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
+  field :confirmation_token,   :type => String
+  field :confirmed_at,         :type => Time
+  field :confirmation_sent_at, :type => Time
+  field :unconfirmed_email,    :type => String # Only if using reconfirmable
 
   ## Lockable
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts

@@ -1,0 +1,16 @@
+<% content_for :header_content do %>
+  <%= render :partial => "/shared/header_content"%>
+<% end %>
+
+<div class="span5 well offset3">
+  <h4>Регистрация</h4>
+  <%= form_for(:user, :url => registration_path(:user)) do |f| %>
+    <%= devise_error_messages! %>
+    <p><%= f.email_field :email, :class=>"m-wrap m-ctrl-large", :placeholder => "email" %></p>
+    <p><%= f.text_field :username, :class=>"m-wrap m-ctrl-large", :placeholder => "как вас зовут?" %></p>
+    <p><%= f.password_field :password, :class=>"m-wrap m-ctrl-large", :placeholder => "пароль" %></p>
+    <p><%= f.password_field :password_confirmation, :class=>"m-wrap m-ctrl-large", :placeholder => "пароль еще раз" %></p>
+    <p><button type="submit" class="m-btn blue">Зарегистрироваться</button>
+    </p>
+  <% end %>
+</div>

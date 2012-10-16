@@ -1,0 +1,12 @@
+<% content_for :header_content do %>
+  <%= render :partial => "/shared/header_content"%>
+<% end %>
+
+<div class="span5 well offset3">
+  <h4>Отправить ключ заново</h4>
+  <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <p><%= f.email_field :email, :class=>"m-wrap m-ctrl-large", :placeholder => "email" %></p>
+    <p><button type="submit" class="m-btn blue">Отправить</button>
+  <% end %>
+</div>

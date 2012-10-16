@@ -1,0 +1,19 @@
+<% content_for :header_content do %>
+  <%= render :partial => "/shared/header_content"%>
+<% end %>
+
+<div class="span5 well offset3">
+  <h4>Вход</h4>
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    <p><%= f.email_field :email, :class=>"m-wrap m-ctrl-large", :placeholder => "email" %></p>
+    <p><%= f.password_field :password, :class=>"m-wrap m-ctrl-large", :placeholder => "пароль" %></p>
+    <span><label for="user_remember_me" class="checkbox m-checkbox m-wrap"><%= f.check_box :remember_me, :class=>"m-wrap"%> запомнить</label></span>
+    <span><button type="submit" class="m-btn blue">Войти</button>
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' %>
+        <%= link_to "Забыл пароль?", new_password_path(resource_name) %><br />
+      <% end -%>
+    </span>
+  <% end %>
+
+</div>
