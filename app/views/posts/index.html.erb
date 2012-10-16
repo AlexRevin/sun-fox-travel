@@ -44,8 +44,16 @@
                 <td><strong><%= link_to raw('<i class="icon-edit"></i>'), edit_post_path(p) %></strong></td>
                 <td><%= link_to "Показать", post_path(p) %>
                 <td><strong><%= link_to "title", edit_post_path(p)%></strong></td>
-                <td><span class="badge"><%= p.asset_collection.try(:assets).try(:count) || 0 %>&nbsp;<i class="icon-picture icon-white"></i></span></td>
-                <td><span class="label label-info"><%= p.country.name_ru %></span>&nbsp;<span class="label"><%= p.city.name_ru %></span></td>
+                <td><span class="m-btn mini red"><%= p.asset_collection.try(:assets).try(:count) || 0 %>&nbsp;<i class="icon-picture icon-white"></i></span></td>
+                <td>
+                  <ul class="list-locations">
+                    <% p.locations.each do |l| %>
+                      <% color = l.is_a?(Country) ? "green" : "blue" %>
+                      <li><a href="#" class="m-btn mini <%=color%>"><%=l.name_ru%></a></li>
+                    <% end %>
+                  </ul>
+                  <div class="clear"></div>
+                </td>
                 <td><strong><%= link_to raw('<i class="icon-remove-circle"></i>'), post_path(p), :method => :delete %></strong></td>
               </tr>
             </tr>

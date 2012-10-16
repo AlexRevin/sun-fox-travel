@@ -6,4 +6,12 @@ class Post
   field :location_ids, type: Array
   
   embeds_many :post_items
+  
+  def locations
+    out = []
+    location_ids.each do |_id|
+      out << (Country.where(:_id => _id).first() || City.where(:_id => _id).first())
+    end if location_ids.present?
+    out
+  end
 end
