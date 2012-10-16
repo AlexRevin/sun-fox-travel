@@ -8,12 +8,14 @@ class PostsController < ApplicationController
   end
   
   def create
-    ap params[:place_ids]
-    # if post = Post.create(:city => city, :country => country, :user => current_user)
-    #   redirect_to edit_post_path(post)
-    # else
+    if post = Post.create(:user => current_user)
+      params[:place_ids].split(",").each do |p|
+        post.add_to_set(:location_ids, p)
+      end if params[:place_ids].present?
+      redirect_to edit_post_path(post)
+    else
       redirect :back
-    # end
+    end
   end
   
   def update_positions
