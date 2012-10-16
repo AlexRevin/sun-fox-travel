@@ -1,5 +1,8 @@
 /*
 *= require bootstrap.min
+*= require m-buttons
+*= require m-forms
+*= require m-icons
 *= require sunfox
 *= require ./ui
 */

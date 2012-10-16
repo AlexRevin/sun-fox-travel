@@ -5,14 +5,14 @@
 
   <div class="span3 user-auth">
     <% unless user_signed_in? %>
-      <div class="btn-group enter-button">
-        <a class="btn" href="#login-box" data-toggle="modal">
+      <div class="m-btn-group enter-button">
+        <button class="m-btn gray" href="#login-box" data-toggle="modal">
           Войти
-        </a>
-        <button class="btn dropdown-toggle" data-toggle="dropdown">
+        </button>
+        <button class="m-btn gray dropdown-toggle" data-toggle="dropdown">
           <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu">
+        <ul class="m-dropdown-menu">
           <li>
             <%= link_to image_tag("/assets/facebook.gif"),  user_omniauth_authorize_path(:facebook), :class => "fb-auth" %> 
           </li>

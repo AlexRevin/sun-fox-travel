@@ -261,12 +261,24 @@
         position: relative;
         top: 0;
       }
-    &.big {width: 700px;}
-    &.small {width: 400px;}
+    &.v-big {width: 700px;}
+    &.v-small {width: 400px;}
     }
     .text-editor {
+      &.v-big {
+        width: 700px;
+        textarea {
+          width: 680px;
+        }
+      }
+      &.v-small {
+        width: 376px;  
+        textarea {
+          width: 356px;
+        }
+      }
       textarea {
-        margin: 4px 0 0 4px;
+        margin: 4px 0 4px 4px;
         height: 80px;
         padding: 3px;
         background: transparent;
@@ -275,12 +287,6 @@
           background-color: #fff;
           border: 1px solid #ccc;
         }
-      }
-      .dropdown.big>textarea {
-        width: 684px;
-      }
-      .dropdown.small>textarea {
-        width: 360px;
       }
       .ctrl {
         text-align: right;

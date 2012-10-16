@@ -12,7 +12,7 @@ window.Item = class Item extends Backbone.Model
     _id: null
     asset_model: null
     text: ""
-    viewport: "big"
+    viewport: "v-big"
     asset_id: null
   
   prefill_asset: (col) =>
@@ -96,7 +96,7 @@ window.EditorView = class EditorView extends Backbone.View
     @position_counter = 0
     @asset_collection = opts.asset_collection
     @item_collection = opts.item_collection
-    @size = $.cookie("viewport.image-size") || "big"
+    @size = $.cookie("viewport.image-size") || "v-big"
     
     @$el.sortable
       forcePlaceholderSize: true
@@ -151,7 +151,7 @@ window.EditorView = class EditorView extends Backbone.View
     $(".viewport a").bind "click", (ev) =>
       switch $(ev.target).attr("viewport-class")
         when "zoom"
-          @size = $(ev.target).attr("image-size")
+          @size = "v-#{$(ev.target).attr("image-size")}"
           $.cookie("viewport.image-size", @size)
           @item_collection.each (m) =>
             m.set("viewport", @size)
