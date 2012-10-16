@@ -2,5 +2,6 @@
 //= require jquery_ujs
 //= require ./lib
 //= require ./comp
+//= require ./ui
 //= require ./sunfox
 // = require ./posts

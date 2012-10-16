@@ -8,14 +8,12 @@ class PostsController < ApplicationController
   end
   
   def create
-    city = City.where(:name_ru => params[:city]).first
-    country = Country.where(:name_ru => params[:country]).first
-    
-    if post = Post.create(:city => city, :country => country, :user => current_user)
-      redirect_to edit_post_path(post)
-    else
+    ap params[:place_ids]
+    # if post = Post.create(:city => city, :country => country, :user => current_user)
+    #   redirect_to edit_post_path(post)
+    # else
       redirect :back
-    end
+    # end
   end
   
   def update_positions

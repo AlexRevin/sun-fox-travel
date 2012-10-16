@@ -2,4 +2,6 @@
 *= require ./close
 *= require ./tooltips
 *= require ./popover2
+*= require ./token-input
+*= require ./token-input-facebook
 */

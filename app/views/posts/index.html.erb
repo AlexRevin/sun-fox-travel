@@ -10,26 +10,12 @@
           <div class="row">
             <div class="span7 offset3">
               <div class="wizard-starter" data-title="Скажи, <%=current_user.username %>, не пора ли нам добавить новое путешествие?" data-placement="left">
-                <p class="lead" >Выбери страну и погнали!</p>
+                <p class="lead" >Выбери места где ты был и погнали!</p>
               </div>
             </div>
           </div>
           <div class="row wizard-region-select">
-            <div class="span3"> 
-              <div class="m-input-prepend">
-                <span class="add-on">страна</span>
-                <input type="text" class="country-field m-wrap" name="country" autocomplete="off">
-              </div>
-
-            </div>
-            <div class="span3">
-              <div class="m-input-prepend">
-                <span class="add-on">город</span><input type="text" class="city-field m-wrap" name="city" autocomplete="off">
-              </div>
-            </div>
-            <div class="span2">
-              <button class="m-btn green" type="submit">Поехали</button>            
-            </div>
+            <%= render :partial => "/elements/ui_country_city" %>
           </div>
         </div>
       <% end %>

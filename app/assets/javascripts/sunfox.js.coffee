@@ -8,7 +8,9 @@ _.templateSettings =
   
 
 $(document).ready (args) ->
-    
+  
+  $('.country-city').country_city()
+  
   $('.search-input').tooltip("show")
   
   $(".image-of-the-day img").imagesLoaded (args) ->
@@ -36,30 +38,3 @@ $(document).ready (args) ->
     trigger: "manual"
   })
   $(".wizard-starter").tooltip("show")
-  
-  $(".country-field").typeahead({
-    minLength: 2
-    source: (query, th) ->
-      $.ajax "/api/search"
-        dataType: "json"
-        type: "GET"
-        data:
-          w: "ctr" 
-          q: query 
-        success: (res) ->
-          th(res)
-
-  })
-  
-  $(".city-field").typeahead({
-    minLength: 2
-    source: (query, th) ->
-      $.ajax "/api/search"
-        dataType: "json"
-        type: "GET"
-        data:
-          w: "cty" 
-          q: query 
-        success: (res) ->
-          th(res)    
-  })

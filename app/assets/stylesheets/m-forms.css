@@ -2,6 +2,7 @@ label.m-wrap,
 input.m-wrap,
 button.m-wrap,
 select.m-wrap,
+ul.m-wrap,
 textarea.m-wrap {
   font-size: 14px;
   font-weight: normal;
@@ -11,6 +12,7 @@ textarea.m-wrap {
 input.m-wrap,
 button.m-wrap,
 select.m-wrap,
+ul.m-wrap,
 textarea.m-wrap {
   font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -22,6 +24,7 @@ label.m-wrap {
 
 select.m-wrap,
 textarea.m-wrap,
+ul.m-wrap,
 input[type="text"].m-wrap,
 input[type="password"].m-wrap,
 input[type="datetime"].m-wrap,
@@ -66,6 +69,7 @@ textarea.m-wrap {
 }
 
 textarea.m-wrap,
+ul.m-wrap,
 input[type="text"].m-wrap,
 input[type="password"].m-wrap,
 input[type="datetime"].m-wrap,
@@ -194,6 +198,7 @@ input[type="checkbox"].m-wrap:focus {
   height: auto;
 }
 
+ul.m-wrap:-moz-placeholder,
 input.m-wrap:-moz-placeholder,
 textarea.m-wrap:-moz-placeholder {
   color: #999999;
@@ -336,6 +341,7 @@ select.m-wrap:focus:required:invalid:focus {
   white-space: nowrap;
 }
 
+.m-input-append ul
 .m-input-append input,
 .m-input-prepend input,
 .m-input-append select,
