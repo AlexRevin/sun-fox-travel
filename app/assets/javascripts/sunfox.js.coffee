@@ -10,6 +10,10 @@ _.templateSettings =
 $(document).ready (args) ->
   
   $('.country-city').country_city()
+  $("img.lazy").lazyload
+    threshold: 500
+    effect: "fadeIn"
+  
   
   $('.search-input').tooltip("show")
   

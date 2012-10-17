@@ -23,7 +23,7 @@ class PostsController < ApplicationController
       ps = params[:positions]
       p.post_items.each do |pi|
         pi.update_attribute :pos, ps.index{|x| x == pi[:_id].to_s}
-      end
+      end if ps.present?
       
       render :text => "ok"
     else

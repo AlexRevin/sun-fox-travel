@@ -11,6 +11,7 @@
 //= require ./bootstrap
 //= require ./jquery.textarea
 //= require ./jquery.tokeninput
+//= require ./jquery.lazyload
 //= require ./jquery.cookie
 //= require ./jquery.fullscreen
 //= require ./jquery.fileupload-fp

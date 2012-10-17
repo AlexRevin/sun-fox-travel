@@ -53,6 +53,28 @@ module CarrierWave
         img
       end
     end
+    
+    
+    def light_blur(lvl, pc)
+      manipulate! do |img|
+        Rails.logger.debug img.inspect
+        img.combine_options do |cmd|
+          cmd.blur lvl
+          cmd.quality pc
+          cmd.colorspace "Gray"
+          cmd.gamma "0.8"
+        end
+        
+        sp_img = ::MiniMagick::Image.open("#{Rails.root}/app/assets/images/spinner.png")
+
+        img = img.composite(sp_img) do |cmd|
+          cmd.gravity 'center'
+        end
+        
+        img = yield(img) if block_given?
+        img
+      end
+    end
 
     def lomo_filter
       manipulate! do |img|

@@ -9,18 +9,21 @@
   </div>
 <% end %>
 <div class="row">
-  <div class="span12">
-  <% @post.post_items.each do |pi| %>
-    <div class="item-block">
-      <div class="image">
-        <% if pi.asset.present? %>
-          <img src="<%=pi.asset.image.view.url%>" alt="" />
+  <div class="span9">
+    <% @post.post_items.each do |pi| %>
+      <div class="item-block">
+        <div class="image">
+          <% if pi.asset.present? %>
+            <img class="lazy" src="<%=pi.asset.image.view_low.url%>" data-original="<%=pi.asset.image.view.url%>">
+          <% end %>
+        </div>
+        <% if pi.text.present? %>
+          <div class="text dropdown">
+            <span><%=pi.text%></span>
+          </div>
         <% end %>
       </div>
-      <div class="text">
-        <span><%=pi.text%></span>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
   </div>
+  <div class="span3"></div>
 </div>

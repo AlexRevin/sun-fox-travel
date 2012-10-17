@@ -11,8 +11,12 @@ class AssetUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  # storage :file
-  storage :fog
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
+  # 
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -36,9 +40,9 @@ class AssetUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+  process :autorotate
   process :strip
   process :quality => "90"
-  process :autorotate
   
   version :md_thumb do
     process :resize_to_fill => [140, 79]
@@ -48,9 +52,20 @@ class AssetUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [700, 1000]
   end
   
+  version :view_low do
+    process :resize_to_fit => [700, 1000]
+    process :light_blur => ["5x4", "40"]
+  end
+  
   version :medium_view do
     process :resize_to_fit => [375, 599]
   end
+  
+  version :medium_low do
+    process :resize_to_fit => [375, 599]
+    process :light_blur => ["5x4", "60"]
+  end
+  
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
