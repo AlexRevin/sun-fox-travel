@@ -10,7 +10,7 @@
 <% end %>
 <div class="row">
   <div class="span9">
-    <% @post.post_items.each do |pi| %>
+    <% @post.post_items.asc(:pos).each do |pi| %>
       <div class="item-block">
         <div class="image">
           <% if pi.asset.present? %>
