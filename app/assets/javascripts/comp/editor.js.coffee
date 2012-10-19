@@ -140,8 +140,9 @@ window.EditorView = class EditorView extends Backbone.View
     @item_collection.each (item) =>
       item.prefill_asset @asset_collection
       item.set "viewport", @size
-      e_elem = new EditorElement {model: item, parent: @}
-      $("#editor .placeholder").before e_elem.light_render().el
+      if item.has("image") || item.has("asset_id")
+        e_elem = new EditorElement {model: item, parent: @}
+        $("#editor .placeholder").before e_elem.light_render().el
     
     @item_collection.on "add", (item) =>
       item.save ["asset_id", "text"]

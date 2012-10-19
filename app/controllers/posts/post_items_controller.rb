@@ -33,7 +33,6 @@ class Posts::PostItemsController < ApplicationController
       
       render :json => {:_id => post_item[:_id], :text => post_item[:text]}
     else
-      ap "fail"
       render :status => 500
     end
   end
