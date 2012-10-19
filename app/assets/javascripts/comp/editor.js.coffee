@@ -100,7 +100,7 @@ window.EditorView = class EditorView extends Backbone.View
       axis: "y"
       delay: 200
       scroll: true
-      # items: "> .sorter"
+      items: "> .sorter"
       change: (evt, ui) =>
         ui.item.data "pos", $(ui.placeholder).index()
 
