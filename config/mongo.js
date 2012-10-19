@@ -15,8 +15,10 @@ db.cities.find().forEach(function(c){
   } else {
     if (cn.code == "US"){
       c.with_country_ru = cn.name_ru + ", " + c.region + ", "+ c.name_ru
+      c.with_country_en = cn.name_en + ", " + c.region + ", "+ c.name_en
     } else {
       c.with_country_ru = cn.name_ru + ", " + c.name_ru
+      c.with_country_en = cn.name_en + ", " + c.name_en
     }
     db.cities.save(c)    
   }
