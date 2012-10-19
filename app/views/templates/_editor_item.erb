@@ -4,12 +4,13 @@
       <div class="ctrl">
         <a href="#" class="close-btn-20 destroyer">x</a>
       </div>
-      [[ if (viewport == "v-big") { ]]
-        <img src="{{asset_model.image.image.view.url}}" data-asset-id="{{asset_model._id}}" />
-      [[ } else { ]]
-        <img src="{{asset_model.image.image.medium_view.url}}" data-asset-id="{{asset_model._id}}" />
+      [[ if (typeof(asset_model.image) !== "undefined"){ ]]
+        [[ if (viewport == "v-big") { ]]
+          <img src="{{asset_model.image.image.view.url}}" data-asset-id="{{asset_model._id}}" />
+        [[ } else { ]]
+          <img src="{{asset_model.image.image.medium_view.url}}" data-asset-id="{{asset_model._id}}" />
+        [[ } ]]
       [[ } ]]
-
     </div>
     <div class="text-editor {{viewport}}">
       <div class="dropdown">
