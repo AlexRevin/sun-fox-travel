@@ -4,7 +4,7 @@
       <div class="ctrl">
         <a href="#" class="close-btn-20 destroyer">x</a>
       </div>
-      [[ if (typeof(asset_model) !== "undefined"){ ]]
+      [[ if (asset_model != null){ ]]
         [[ if (viewport == "v-big") { ]]
           <img src="{{asset_model.image.image.view.url}}" data-asset-id="{{asset_model._id}}" />
         [[ } else { ]]

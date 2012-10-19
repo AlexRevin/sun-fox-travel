@@ -47,7 +47,6 @@ window.EditorElement = class EditorElement extends Backbone.View
     @model.on "change:viewport", @light_render
     
   light_render: (caller) =>
-    console.log "lr"
     a = JSON.parse(JSON.stringify(@model.toJSON()))
     @$el.html(@template(a))
     @$el.attr "id", @model.get("_id") || null
@@ -58,7 +57,6 @@ window.EditorElement = class EditorElement extends Backbone.View
     @
     
   render: =>
-    console.log "r"
     a = JSON.parse(JSON.stringify(@model.toJSON()))
     @$el.html(@template(a))
     @
@@ -109,7 +107,6 @@ window.EditorView = class EditorView extends Backbone.View
       receive: (evt, ui) =>
 
       activate: (evt, ui) =>
-        console.log "activate"
         $(".text-editor").hide()
       deactivate: (evt, ui) =>
         $(".text-editor").show()
