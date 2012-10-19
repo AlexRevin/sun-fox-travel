@@ -42,7 +42,8 @@ class Posts::PostItemsController < ApplicationController
     if (post = Post.find(params[:post_id])).present? && post.user_id == current_user.id
       post_item = post.post_items.find(params[:id])
       
-      Asset.find(post_item[:asset_id]).update_attribute :included, false
+      as = Asset.where(:_id => post_item[:asset_id]).first
+      as.update_attribute :included, false if as.present?
       
       post_item.destroy
       render :text => "ok"
