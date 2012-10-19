@@ -4,7 +4,8 @@ class Posts::PostItemsController < ApplicationController
       post_item = post.post_items.find_or_create_by(id: params[:post_item][:_id])
       post_item.update_attributes({
         :text     => params[:post_item][:text],
-        :asset_id => params[:post_item][:asset_id]
+        :asset_id => params[:post_item][:asset_id],
+        :pos      => params[:post_item][:pos]
       })
       
       Asset.find(params[:post_item][:asset_id]).update_attribute :included, true
@@ -25,7 +26,8 @@ class Posts::PostItemsController < ApplicationController
       post_item = post.post_items.find_or_create_by(:id => params[:post_item][:_id])
       post_item.update_attributes({
         :text     => params[:post_item][:text],
-        :asset_id => params[:post_item][:asset_id]
+        :asset_id => params[:post_item][:asset_id],
+        :pos      => params[:post_item][:pos]
       })
       Asset.find(params[:post_item][:asset_id]).update_attribute :included, true
       

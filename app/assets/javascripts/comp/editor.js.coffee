@@ -45,9 +45,9 @@ window.EditorElement = class EditorElement extends Backbone.View
     parent = opts.parent
     @template =_.template $("#editor-item-tpl").html()
     @model.on "change:viewport", @light_render
-    @model.on "change:_id", @light_render
     
   light_render: (caller) =>
+    console.log "lr"
     a = JSON.parse(JSON.stringify(@model.toJSON()))
     @$el.html(@template(a))
     @$el.attr "id", @model.get("_id") || null
@@ -58,14 +58,9 @@ window.EditorElement = class EditorElement extends Backbone.View
     @
     
   render: =>
+    console.log "r"
     a = JSON.parse(JSON.stringify(@model.toJSON()))
     @$el.html(@template(a))
-    setTimeout =>
-      @$el.find("textarea").focus().autosize();
-      $('html, body').animate
-        scrollTop: @$el.find("textarea").offset().top
-      2000
-    20
     @
     
   flushText: (ev) =>
@@ -98,22 +93,41 @@ window.EditorView = class EditorView extends Backbone.View
     @item_collection = opts.item_collection
     @size = $.cookie("viewport.image-size") || "v-big"
     
+    @pos = 0
+    
     @$el.sortable
       forcePlaceholderSize: true
+      forceHelperSize: true
+      containment: @$el
       axis: "y"
+      delay: 200
       scroll: true
-      items: "> .sorter"
-      tolerance: "pointer"
+      # items: "> .sorter"
+      change: (evt, ui) =>
+        ui.item.data "pos", $(ui.placeholder).index()
+
       receive: (evt, ui) =>
-        @createElement $(ui.item).find(".item-preview").attr("asset-id")  
-        @sortableCallback()
-      start: (evt, ui) =>
+
+      activate: (evt, ui) =>
+        console.log "activate"
         $(".text-editor").hide()
-      stop: (evt, ui) =>
+      deactivate: (evt, ui) =>
         $(".text-editor").show()
+        
       update: (evt, ui) =>
+        asset_id = $(ui.item).attr("asset-id")
+        pos = ui.item.data("pos")
+        found = @item_collection.find (i, c) =>
+          i.get("asset_id") == asset_id
+        unless found?
+          $(ui.item).find(".item-preview").detach()
+          @createElement asset_id, pos
+        else
+          found.set "pos", pos
         @sortableCallback()
         
+    @sortableOpt "placeholder", "placeholder-#{@size}"
+    
     $("#uploaded-assets .asset-item").live 'mouseover', ->
       $(this).draggable({
         revert: true
@@ -126,26 +140,47 @@ window.EditorView = class EditorView extends Backbone.View
     @item_collection.each (item) =>
       item.prefill_asset @asset_collection
       item.set "viewport", @size
-      if item.has("image") || item.has("asset_id")
-        e_elem = new EditorElement {model: item, parent: @}
-        $("#editor .placeholder").before e_elem.light_render().el
+      e_elem = new EditorElement {model: item, parent: @}
+      $("#editor .placeholder").before e_elem.light_render().el
     
     @item_collection.on "add", (item) =>
       item.save ["asset_id", "text"]
       e_elem = new EditorElement {model: item, parent: @}
-      $("#editor .placeholder").before e_elem.render().el
-    
+      to_el = @$el.find(".asset-item[asset-id=#{item.get("asset_model").id}]")
+      to_el.prepend e_elem.render().el
+      @setTextarea to_el
     
     @attachViewPortControl()
     
+  setTextarea: (e) =>
+    setTimeout =>
+      e.find("textarea").focus().autosize();
+      $('html, body').animate
+        scrollTop: e.find("textarea").offset().top
+      2000
+    2000
+    
+  createElement: (item_id, pos) =>
+    found = @asset_collection.find (item) =>
+      item.id == item_id
+    if found? && found.has("image")?
+      found.set("visible", false)
+      @item_collection.add({asset_model: found, viewport: @size, asset_id: item_id, pos: pos})
+      
+  
   postsUrl: =>
     "/posts/#{window.post_id}"
     
   sortableCallback: =>
+    @$el.sortable('refresh')
+    @$el.sortable('refreshPositions')
     $.ajax "#{@postsUrl()}/update_positions/",
       type: "POST",
       data: 
         positions: @$el.sortable('toArray')
+        
+  sortableOpt: (name, value) =>
+    @$el.sortable("option", name, value)
           
   attachViewPortControl: =>
     $(".viewport a").bind "click", (ev) =>
@@ -155,6 +190,7 @@ window.EditorView = class EditorView extends Backbone.View
           $.cookie("viewport.image-size", @size)
           @item_collection.each (m) =>
             m.set("viewport", @size)
+          @sortableOpt "placeholder", "placeholder-#{@size}"
         when "fullscreen"
           $("#editor").fullScreen(true)
       ev.preventDefault()
@@ -165,13 +201,4 @@ window.EditorView = class EditorView extends Backbone.View
           success: (model, response) =>
           error: (model, response) =>
       evt.preventDefault()
-    
-        
-  createElement: (item_id) =>
-    found = @asset_collection.find (item) =>
-      item.id == item_id
-    if found? && found.has("image")?
-      found.set("visible", false)
-      @item_collection.add({asset_model: found, viewport: @size, asset_id: item_id}, pos: (@position_counter+=1))
-    else
     

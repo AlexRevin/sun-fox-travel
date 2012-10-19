@@ -56,18 +56,21 @@ window.AssetView = class AssetView extends Backbone.View
       @render()
       
     @model.on "change:visible", =>
-      opt = @model.get("_id")
-      el = $(".item-preview[asset-id=#{opt}]")
-      if @model.get("visible")
-        el.removeClass("hidden")
-      else
-        el.addClass("hidden")
+      @visibilitySwitch @model.get("visible")
+      
+    @visibilitySwitch @model.get("visible")
 
+  visibilitySwitch: (bool) =>
+    if bool
+      @$el.removeClass("hidden")
+    else
+      @$el.addClass("hidden")
+    
   render: =>
     jso = @model.toJSON()
     jso.cid = @model.cid
     @$el.html @template(jso)
-    @$el.find(".item-preview").attr("asset-id", @model.id)
+    @$el.find(".item-preview").parent().attr("asset-id", @model.id)
     @ 
   
   
