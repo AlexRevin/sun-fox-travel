@@ -98,7 +98,7 @@ window.EditorView = class EditorView extends Backbone.View
       forceHelperSize: true
       containment: @$el
       axis: "y"
-      delay: 200
+      # delay: 200
       scroll: true
       items: "> .sorter"
       change: (evt, ui) =>
@@ -108,6 +108,8 @@ window.EditorView = class EditorView extends Backbone.View
 
       activate: (evt, ui) =>
         $(".text-editor").hide()
+        h = $(ui.item).height()
+        $(".placeholder-v-small, placeholder-v-big").css("height", h)
       deactivate: (evt, ui) =>
         $(".text-editor").show()
         
@@ -121,6 +123,7 @@ window.EditorView = class EditorView extends Backbone.View
           @createElement asset_id, pos
         else
           found.set "pos", pos
+          found.light_render()
         @sortableCallback()
         
     @sortableOpt "placeholder", "placeholder-#{@size}"
