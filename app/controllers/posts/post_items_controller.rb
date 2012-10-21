@@ -5,7 +5,9 @@ class Posts::PostItemsController < ApplicationController
       post_item.update_attributes({
         :text     => params[:post_item][:text],
         :asset_id => params[:post_item][:asset_id],
-        :pos      => params[:post_item][:pos]
+        :pos      => (params[:post_item][:pos] || 0),
+        :cover    => false,
+        :private  => false
       })
       
       Asset.find(params[:post_item][:asset_id]).update_attribute :included, true
@@ -27,11 +29,19 @@ class Posts::PostItemsController < ApplicationController
       post_item.update_attributes({
         :text     => params[:post_item][:text],
         :asset_id => params[:post_item][:asset_id],
-        :pos      => params[:post_item][:pos]
+        :pos      => params[:post_item][:pos],
+        :private  => params[:post_item][:private]
       })
+      
+      if params[:post_item][:cover]
+        post.post_items.map do |pi|
+          pi.update_attribute :cover, false
+        end
+        post_item.update_attribute :cover, true
+      end
       Asset.find(params[:post_item][:asset_id]).update_attribute :included, true
       
-      render :json => {:_id => post_item[:_id], :text => post_item[:text]}
+      render :json => {:_id => post_item[:_id], :text => post_item[:text], :private => post_item[:private], :cover => post_item[:cover]}
     else
       render :status => 500
     end

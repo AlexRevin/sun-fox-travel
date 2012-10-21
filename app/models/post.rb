@@ -14,4 +14,8 @@ class Post
     end if location_ids.present?
     out
   end
+  
+  def cover_item
+    post_items.detect{|pi| pi.cover?} || post_items.first
+  end
 end

@@ -4,6 +4,8 @@ class PostItem
   field :text, type: String
   field :asset_id, type: String
   field :pos, type: Integer
+  field :cover, type: Boolean
+  field :private, type: Boolean
   
   embedded_in :post
   

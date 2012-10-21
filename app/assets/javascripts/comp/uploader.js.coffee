@@ -97,6 +97,12 @@ window.UploaderView = class UploaderView extends Backbone.View
       $(".asset-container").append el
       
     @collection.on "remove", =>
+    
+    $(window).on 'resize', @windowResized
+      
+  windowResized: =>
+    h = $(window).height() - $("#uploader").height() - $("#uploaded-assets .title").height()-60
+    $(".asset-container").height(h)
       
   attachUploader:  =>
     up = @$("#fileupload")
@@ -121,7 +127,11 @@ window.UploaderView = class UploaderView extends Backbone.View
         m.set data.result
     })
     @uploader_attached = true
+    
+  remove: =>
+    $(window).off('resize', @windowResized)
       
   render: =>
     @attachUploader()
+    @windowResized()
     @

@@ -1,10 +1,26 @@
 <script id="editor-item-tpl" type="text/template">
   <div class="editor-item">
-    <div class="image-container {{ viewport}}">
+    <div class="image-container {{viewport}}">
       <div class="ctrl">
         <a href="#" class="close-btn-20 destroyer">x</a>
       </div>
       [[ if (asset_model != null){ ]]
+        <div class="edit-placeholder">
+          <div class="m-btn-group">
+            [[ cc = cover ? "purple" : ""]]
+            <a href="#" class="m-btn mini {{cc}}" viewport-class="cover">Обложка</a>
+            [[ cp = private ? "green" : ""]]
+            <a href="#" class="m-btn mini {{cp}}" viewport-class="private">Личное</a>              
+            <a href="#" class="m-btn mini dropdown-carrettoggle" data-toggle="dropdown">Теги<span class="caret"></span></a>
+            <ul class="m-dropdown-menu">
+                <li><a href="#"><i class="icon-user"></i> Edit Profile</a></li>
+                <li><a href="#"><i class="icon-th-list"></i> View Profile</a></li>
+                <li><a href="#"><i class="icon-question-sign"></i> Help</a></li>
+                <li class="divider"></li>
+                <li><a href="#"><i class="icon-off"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
         [[ if (viewport == "v-big") { ]]
           <img src="{{asset_model.image.image.view.url}}" data-asset-id="{{asset_model._id}}" />
         [[ } else { ]]

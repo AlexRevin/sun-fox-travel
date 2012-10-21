@@ -22,7 +22,9 @@ class PostsController < ApplicationController
     if (p=Post.find(params[:id])).user_id == current_user[:_id]
       ps = params[:positions]
       p.post_items.each do |pi|
-        pi.update_attribute :pos, ps.index{|x| x == pi[:_id].to_s}
+        i = ps.index{|x| x == pi[:_id].to_s}
+        next unless i.present?
+        pi.update_attribute :pos, i
       end if ps.present?
       
       render :text => "ok"
