@@ -1,11 +1,35 @@
 <div class="row">
-  <div class="span5">
-    <span class="label label-warning">поездка дня</span>
-    <a href="#" class="thumbnail image-of-the-day">
-      <img src="/assets/IMG_6410.jpg" alt="" data-placement="right">
-    </a>
+  <div class="span8">
+    <span class="label label-warning">поcледние отчеты</span>
+    <div class="other-trips">
+      <ul class="thumbnails">
+        <% Post.desc(:id).limit(2).each do |p| %>
+        <li class="span4">
+          <a href="<%= url_for(p) %>" class="thumbnail">
+            <img src="<%=p.cover_item.asset.image.medium_view.url%>" alt="" class="other-trips-th">
+          </a>
+          <span class="ttl"><%= p.try(:user).try(:username) %> и <%=p.locations.map(&:name_ru).join(", ")%></span>
+        </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-  <div class="span4 offset3">
+  <div class="span4">
+    <div class="mini-thumbs">
+      <ul class="thumbnails">
+        <% Post.desc(:id).limit(4).skip(2).each do |pp| %>
+        <li class="span2">
+          <a href="<%= url_for(pp) %>" class="thumbnail">
+            <img src="<%=pp.cover_item.asset.image.md_thumb.url%>" alt="" class="other-trips-th">
+          </a>
+          <span class="ttl"><%=pp.locations.map(&:name_ru).join(", ")%></span>
+        </li>
+        <% end %>
+      </ul>            
+    </div>
+  </div>
+  
+  <!-- <div class="span4 offset3">
     <span class="label label-warning">другие поездки</span>
     <div class="other-trips">
       <ul class="thumbnails">
@@ -20,7 +44,7 @@
         <% end %>
       </ul>
     </div>
-  </div>
+  </div> -->
   
   
   <!-- Invivsibles -->
