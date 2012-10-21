@@ -38,7 +38,7 @@
           <tbody>
             <% @posts.each do |p| %>
               <tr>
-                <td><%= image_tag p.cover_item.asset.image.md_thumb.url%></td>
+                <td><%= link_to raw(image_tag p.cover_item.asset.image.md_thumb.url), post_path(p) %></td>
                 <td>
                   <div>
                     <span><strong><%= link_to "title", edit_post_path(p)%></strong></span>
