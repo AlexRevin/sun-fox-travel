@@ -5,9 +5,11 @@
       <ul class="thumbnails">
         <% Post.desc(:id).limit(2).each do |p| %>
         <li class="span4">
-          <a href="<%= url_for(p) %>" class="thumbnail">
-            <img src="<%=p.cover_item.asset.image.medium_view.url%>" alt="" class="other-trips-th">
-          </a>
+          <% if p.cover_item.present? %>
+            <a href="<%= url_for(p) %>" class="thumbnail">
+              <img src="<%=p.cover_item.asset.image.medium_view.url%>" alt="" class="other-trips-th">
+            </a>
+          <% end %>
           <span class="ttl"><%= p.try(:user).try(:username) %> и <%=p.locations.map(&:name_ru).join(", ")%></span>
         </li>
         <% end %>
@@ -19,9 +21,11 @@
       <ul class="thumbnails">
         <% Post.desc(:id).limit(4).skip(2).each do |pp| %>
         <li class="span2">
-          <a href="<%= url_for(pp) %>" class="thumbnail">
-            <img src="<%=pp.cover_item.asset.image.md_thumb.url%>" alt="" class="other-trips-th">
-          </a>
+          <% if pp.cover_item.present? %>
+            <a href="<%= url_for(pp) %>" class="thumbnail">
+              <img src="<%=pp.cover_item.asset.image.md_thumb.url%>" alt="" class="other-trips-th">
+            </a>
+          <% end %>
           <span class="ttl"><%=pp.locations.map(&:name_ru).join(", ")%></span>
         </li>
         <% end %>

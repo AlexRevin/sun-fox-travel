@@ -1,3 +1,6 @@
+ol, ul {
+	list-style: none;
+}
 .fox_logo {
   margin-top: 6px;
   height: 200px;
@@ -329,9 +332,10 @@
 }
 
 .list-locations li {
-  display: block;
-  float: left;
-  margin: 0 2px 4px 0;
+  
+/*  display: block;*/
+/*  float: left;*/
+/*  margin: 0 2px 4px 0;*/
 }
 
 .sneaker {
@@ -345,7 +349,12 @@
 
 /* OWNERS PAGE*/
 .show-posts {
+  .post-title {
+    font-size: 30px;
+    line-height: 48px;
+  }
   ul {
     margin: 0;
+    font-size: 12px;
   }
 }

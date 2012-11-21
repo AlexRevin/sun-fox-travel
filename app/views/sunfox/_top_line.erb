@@ -9,6 +9,11 @@
         <button class="m-btn gray" href="#login-box" data-toggle="modal">
           Войти
         </button>
+        
+        <div class="modal hide" id="login-box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <%= render :partial => "/modals/login" %>
+        </div>
+        
         <button class="m-btn gray dropdown-toggle" data-toggle="dropdown">
           <span class="caret"></span>
         </button>
@@ -18,9 +23,7 @@
           </li>
         </ul>
       </div>
-      <div class="modal hide" id="login-box" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <%= render :partial => "/modals/login" %>
-      </div>
+      
     <% else %>
       <blockquote>
         <p>Hola, <%= current_user.username %> &nbsp; <%= link_to destroy_user_session_path, :method => :delete do %> 

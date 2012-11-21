@@ -31,38 +31,11 @@
           <thead>
             <tr>
               <th class="span2"></th>
-              <th class="span6"></th>
-              <th class="span1"></th>
+              <th class="span8"></th>
             </tr>
           </thead>
           <tbody>
-            <% @posts.each do |p| %>
-              <tr>
-                <td>
-                  <% if p.cover_item.present? %>
-                    <%= link_to raw(image_tag p.cover_item.asset.image.md_thumb.url), post_path(p) %>
-                  <% end %>
-                </td>
-                <td>
-                  <div>
-                    <span><strong><%= link_to "title", edit_post_path(p)%></strong></span>
-                  </div>
-                  <div>
-                    <ul class="list-locations">
-                      <li class="m-btn mini red"><%= p.asset_collection.try(:assets).try(:count) || 0 %>&nbsp;<i class="icon-picture icon-white"></i></li>
-                      <% p.locations.each do |l| %>
-                        <% color = l.is_a?(Country) ? "green" : "blue" %>
-                        <li><a href="#" class="m-btn mini <%=color%>"><%=l.name_ru%></a></li>
-                      <% end %>
-                    </ul>
-                    <div class="clear"></div>                    
-                  </div>
-                </td>
-                <td><strong><%= link_to raw('<i class="icon-remove-circle"></i>'), post_path(p), :method => :delete %></strong></td>
-              </tr>
-            </tr>
-            <% end %>
-
+            <%= render :partial => "post_item", :collection => @posts %>
           </tbody>
         </table>
       </div>

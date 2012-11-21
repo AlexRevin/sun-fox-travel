@@ -3,6 +3,7 @@
 //= require ./backbone
 //= require ./backbone-nested-v1.1.2.min
 //= require ./jquery-ui-1.8.23.custom.min
+//= require ./jquery.iframe-transport
 //= require ./jquery.fileupload
 //= require ./jquery.fileupload-ui
 //= require ./jquery.image
@@ -13,6 +14,5 @@
 //= require ./jquery.tokeninput
 //= require ./jquery.lazyload
 //= require ./jquery.cookie
-//= require ./jquery.fullscreen
 //= require ./jquery.fileupload-fp
 //= require ./jquery.postmessage-transport

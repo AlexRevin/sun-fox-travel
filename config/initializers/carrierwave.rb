@@ -209,11 +209,19 @@ module CarrierWave
 end
 
 CarrierWave.configure do |cfg|
-  cfg.fog_credentials = {
-    :provider           => 'Rackspace',
-    :rackspace_username => 'at0mic',
-    :rackspace_api_key  => '316878bfef5241e24c21fa61ccb880dd'
-  }
-  cfg.fog_directory = 'cdn1'
-  cfg.fog_host = "http://cdn1.sunfoxtravel.ru"
+  cfg.asset_host = proc do |file|
+    if Rails.env.production?
+      "http://cdn1.sunfoxtravel.ru"
+    else
+      "http://sft.assets:3100"
+    end
+  end
+  
+  # cfg.fog_credentials = {
+  #   :provider           => 'Rackspace',
+  #   :rackspace_username => 'at0mic',
+  #   :rackspace_api_key  => '316878bfef5241e24c21fa61ccb880dd'
+  # }
+  # cfg.fog_directory = 'cdn1'
+  # cfg.fog_host = "http://cdn1.sunfoxtravel.ru"
 end

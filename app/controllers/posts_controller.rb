@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.where(:user_id => current_user[:_id]).all
+    @posts = Post.where(:user_id => current_user[:_id]).desc(:created_at).all
   end
   
   def edit
@@ -45,6 +45,10 @@ class PostsController < ApplicationController
   def destroy
     Post.find(params[:id]).destroy
     redirect_to :back
+  end
+  
+  def share
+    # render :template => "/modals/share.erb", :layout => false
   end
   
   def set_menu

@@ -12,6 +12,7 @@ Sunfoxtravel::Application.routes.draw do
   resources :posts do
     member do
       post "update_positions"
+      get "share"
     end
     resources :post_items, :controller => "posts/post_items"
   end

@@ -11,17 +11,18 @@ class AssetUploader < CarrierWave::Uploader::Base
   # include Sprockets::Helpers::IsolatedHelper
 
   # Choose what kind of storage to use for this uploader:
-  if Rails.env.production?
-    storage :fog
-  else
+  # if Rails.env.production?
+    # storage :fog
+  # else
     storage :file
-  end
+  # end
   # 
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    # "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -52,19 +53,19 @@ class AssetUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [700, 1000]
   end
   
-  version :view_low do
-    process :resize_to_fit => [700, 1000]
-    process :light_blur => ["5x4", "40"]
-  end
+  # version :view_low do
+  #   process :resize_to_fit => [700, 1000]
+  #   process :light_blur => ["5x4", "40"]
+  # end
   
   version :medium_view do
     process :resize_to_fit => [375, 599]
   end
   
-  version :medium_low do
-    process :resize_to_fit => [375, 599]
-    process :light_blur => ["5x4", "60"]
-  end
+  # version :medium_low do
+  #   process :resize_to_fit => [375, 599]
+  #   process :light_blur => ["5x4", "60"]
+  # end
   
 
   # Add a white list of extensions which are allowed to be uploaded.

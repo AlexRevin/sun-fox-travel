@@ -12,4 +12,8 @@ class PostItem
   def asset
     Asset.where(:post_id => self.post[:_id], :id => asset_id).first
   end
+  
+  def text_html
+    RedCloth.new(text).to_html
+  end
 end

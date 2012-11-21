@@ -14,12 +14,12 @@
       <div class="item-block">
         <div class="image">
           <% if pi.asset.present? %>
-            <img class="lazy" src="<%=pi.asset.image.view_low.url%>" data-original="<%=pi.asset.image.view.url%>">
+            <img class="lazy" src="/assets/plch.png" data-original="<%=pi.asset.image.view.url%>">
           <% end %>
         </div>
         <% if pi.text.present? %>
           <div class="text dropdown">
-            <span><%=pi.text%></span>
+            <span><%=raw pi.text_html%></span>
           </div>
         <% end %>
       </div>

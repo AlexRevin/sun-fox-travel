@@ -1,0 +1,26 @@
+<tr>
+  <td>
+    <% if post_item.cover_item.present? %>
+      <%= link_to raw(image_tag post_item.cover_item.asset.image.md_thumb.url), post_path(post_item) %>
+    <% end %>
+  </td>
+  <td>
+    <div>
+      <span class="post-title"><%= link_to "title", edit_post_path(post_item)%></span>
+    </div>
+    <div>
+      <span class="m-btn-group"><a class="m-btn mini black rnd dropdown-toggle" href="#" data-toggle="dropdown">&nbsp;действия</a>
+        <ul class="m-dropdown-menu">
+          <% if can? :share, post_item %>
+            <li><a href="<%=share_post_path(post_item)%>" data-target="#share-box" data-toggle="modal"><i class="icon-share"></i> поделиться</a></li>
+            <li><%= link_to raw('<i class="icon-remove-circle"></i> удалить'), post_path(post_item), :method => :delete %></li>
+          <% end %>
+        </ul>
+        <% post_item.locations.each do |l| %>
+          <% color = l.is_a?(Country) ? "green" : "blue" %>
+          <span><a href="#" class="m-btn mini <%=color%>"><%=l.name_ru%></a></span>
+        <% end %>
+      </span>
+    </div>
+  </td>
+</tr>

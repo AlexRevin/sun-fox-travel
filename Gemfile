@@ -13,10 +13,19 @@ gem 'omniauth-vkontakte'
 gem "carrierwave"
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem "state_machine"
+gem 'RedCloth'
 # gem "rmagick"
 gem "mini_magick"
 gem "uuid"
 gem "cancan"
+
+#backend processing
+gem 'qu'
+gem 'qu-rails'
+gem 'qu-mongoid'
+
+# foreman
+gem 'foreman'
 
 gem 'capistrano'
 gem 'awesome_print'

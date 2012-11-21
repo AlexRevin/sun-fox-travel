@@ -106,9 +106,9 @@ window.UploaderView = class UploaderView extends Backbone.View
       
   attachUploader:  =>
     up = @$("#fileupload")
+    console.log up.attr("post-id")
     up.fileupload({
-      url: '/assets/'
-      formData: {post_id: up.attr("post-id")}
+      url: "/assets/?post_id=#{up.attr("post-id")}"
       sequentialUploads: true
       dataType: 'json'
       fileInput: $ "#fileupload"
