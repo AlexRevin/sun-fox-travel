@@ -211,7 +211,7 @@ end
 CarrierWave.configure do |cfg|
   cfg.asset_host = proc do |file|
     if Rails.env.production?
-      "http://cdn1.sunfoxtravel.ru"
+      "http://cdn#{rand(1..3)}.sunfoxtravel.ru"
     else
       "http://sft.assets:3100"
     end
