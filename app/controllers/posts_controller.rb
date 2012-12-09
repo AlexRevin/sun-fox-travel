@@ -39,7 +39,13 @@ class PostsController < ApplicationController
   
   
   def update
-
+    if (p=Post.find(params[:id])).user_id == current_user[:_id]
+      ap params
+      p.update_attributes params[:post]
+      render :text => "ok"
+    else
+      render :status => 404
+    end
   end
   
   def destroy

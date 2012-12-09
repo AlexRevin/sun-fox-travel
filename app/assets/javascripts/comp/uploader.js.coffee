@@ -32,9 +32,8 @@ window.AssetView = class AssetView extends Backbone.View
   tagName: "div"
   className: "asset-item"
   
-  events: {
+  events: 
     "click .item-preview .destroyer a": "destroyItem"
-  }
   
   destroyItem: (ev) =>
     ev.preventDefault()
@@ -74,14 +73,10 @@ window.AssetView = class AssetView extends Backbone.View
     @ 
   
   
-
 window.UploaderView = class UploaderView extends Backbone.View
   el: "#uploader"
   
   initialize: (opts)->
-    @slider_position = 0
-    @step = 5
-    
     @uploader_attached = false
     
     @collection = opts.collection

@@ -176,7 +176,7 @@ input[type="search"]::-webkit-search-decoration, input[type="search"]::-webkit-s
   overflow: visible;
   margin: 0;
   padding: 10px 14px;   
-  margin-top: 8px;   
+  # margin-top: 8px;   
   cursor: pointer;
   outline: none;
   border: none; 

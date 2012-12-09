@@ -1,11 +1,20 @@
 <% content_for :header_content do %>
-  <div class='span2 fox_logo'></div>
+  <div class='span1'>
+    <div class="fox_logo_sm"></div>
+  </div>
   <div class="row">
-    <div class="span10 top_line">
+    <div class="span11 top_line">
       <%= render :partial => "top_line"%>
     </div>
+
     <div class="row">
+      <% if can? :share, @post %> 
+      <div class="span4">
+        <%= render :partial => "share_opts", :locals => {:post => @post} %>
+      </div>
+      <% end %>
     </div>
+
   </div>
 <% end %>
 <div class="row">

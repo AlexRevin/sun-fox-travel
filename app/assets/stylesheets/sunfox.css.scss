@@ -6,6 +6,11 @@ ol, ul {
   height: 200px;
   background: url(/assets/fox.png) 0px 0 no-repeat;
 }
+.fox_logo_sm {
+  width: 58px;
+  height:70px;
+  background: url(/assets/logo_sm.gif) 0px 0 no-repeat;
+}
 .top-row {
   margin-top: 10px;
   .enter-button {
@@ -357,4 +362,10 @@ ol, ul {
     margin: 0;
     font-size: 12px;
   }
+}
+
+
+/* SHARE MENU */
+.share-buttons {
+  margin: 0 0 6px 0;
 }

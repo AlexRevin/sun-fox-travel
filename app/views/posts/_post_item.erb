@@ -6,15 +6,14 @@
   </td>
   <td>
     <div>
-      <span class="post-title"><%= link_to "title", edit_post_path(post_item)%></span>
+      <div class="post-title"><%= link_to post_item.title || "Без Названия", post_path(post_item)%></div>
     </div>
     <div>
-      <span class="m-btn-group"><a class="m-btn mini black rnd dropdown-toggle" href="#" data-toggle="dropdown">&nbsp;действия</a>
+      <span class="m-btn-group">
+        <a class="m-btn mini black rnd dropdown-toggle" href="#" data-toggle="dropdown">&nbsp;действия</a>
         <ul class="m-dropdown-menu">
-          <% if can? :share, post_item %>
-            <li><a href="<%=share_post_path(post_item)%>" data-target="#share-box" data-toggle="modal"><i class="icon-share"></i> поделиться</a></li>
-            <li><%= link_to raw('<i class="icon-remove-circle"></i> удалить'), post_path(post_item), :method => :delete %></li>
-          <% end %>
+          <li><%= link_to raw('<i class="icon-edit"></i> редактировать'), edit_post_path(post_item) %></li>
+          <li><%= link_to raw('<i class="icon-remove-circle"></i> удалить'), post_path(post_item), :method => :delete %></li>
         </ul>
         <% post_item.locations.each do |l| %>
           <% color = l.is_a?(Country) ? "green" : "blue" %>

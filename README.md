@@ -1,4 +1,4 @@
 sun-fox-travel
 ==============
 
-sunfoxtravel
+bundle exec rake qu:work

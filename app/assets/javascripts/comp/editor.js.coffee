@@ -39,8 +39,7 @@ window.EditorElement = class EditorElement extends Backbone.View
   destroyItem: (ev) =>
     ev.preventDefault()
     am = @model.get("asset_model")
-    if am?
-      am.set "visible", true
+    am.set "visible", true if am?
     @model.destroy()
     @$el.parent(".ui-draggable").detach()
     @remove()
@@ -75,7 +74,6 @@ window.EditorElement = class EditorElement extends Backbone.View
         $(ev.target).next().removeClass "green"
         
       when "private"
-        console.log @model.get("cover")
         unless @model.get("cover")
           unless @model.get("private")
             @model.set("private", true)
@@ -187,7 +185,7 @@ window.EditorView = class EditorView extends Backbone.View
         
         div = $("<div class=\"asset-item ui-draggable\"></div>")
         div.append el
-        $("#editor .placeholder").before(div)
+        $("#editor").append(div)
     
     @item_collection.on "add", (item) =>
       item.save ["asset_id", "text"],        
@@ -210,12 +208,11 @@ window.EditorView = class EditorView extends Backbone.View
     @attachViewPortControl()
     
   setTextarea: (e) =>
-    setTimeout =>
-      e.find("textarea").focus().autosize();
-      $('html, body').animate
-        scrollTop: e.find("textarea").offset().top
-      2000
-    2000
+    $('html, body').animate({
+      scroll: e.find("textarea").offset().top
+    }, 1000, ->
+      e.find("textarea").focus().autosize()
+    )
     
   createElement: (item_id, pos) =>
     found = @asset_collection.find (item) =>
