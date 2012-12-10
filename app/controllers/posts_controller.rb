@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    redirect_to :root unless can? :edit, @post
   end
   
   def create

@@ -1,9 +1,3 @@
-window.Post = class Post extends Backbone.Model
-  idAttribute: "_id"
-  urlRoot: "/posts"
-  defaults:     
-    title: ""
-  
 window.EditorPostView = class EditorPostView extends Backbone.View
   initialize: (opts) ->
     @title_elem = opts.title_elem
@@ -16,6 +10,3 @@ window.EditorPostView = class EditorPostView extends Backbone.View
       @model.save ["title"],
         success: (model, resp) =>
           console.log "saved"
-      
-  
-  

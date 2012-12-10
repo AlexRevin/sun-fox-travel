@@ -8,31 +8,51 @@
     </div>
 
     <div class="row">
-      <% if can? :share, @post %> 
-      <div class="span4">
-        <%= render :partial => "share_opts", :locals => {:post => @post} %>
+      <div class="span11">
+        <div class="post-buttons">
+          <div class="m-btn-strip">
+            <% if can? :edit, @post%>
+              <div class="m-btn-group">
+                <%= button_href :url => edit_post_path(@post), :text => "редактировать", :icon => "icon-edit icon-white", :size => "mini", :color => "green" %>
+              </div>
+            <% end %>
+            <% if can? :share, @post %> 
+              <%= render :partial => "share_opts", :locals => {:post => @post} %>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <% end %>
     </div>
 
   </div>
 <% end %>
+
+<% content_for :templates_content do %>
+  <%= render :partial => "/templates/viewer_index" %>
+<% end %>
+
 <div class="row">
   <div class="span9">
-    <% @post.post_items.asc(:pos).each do |pi| %>
-      <div class="item-block">
-        <div class="image">
-          <% if pi.asset.present? %>
-            <img src="<%=pi.asset.image.view.url%>">
-          <% end %>
-        </div>
-        <% if pi.text.present? %>
-          <div class="text dropdown">
-            <span><%=raw pi.text_html%></span>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="post-viewer">
+    </div>
   </div>
   <div class="span3"></div>
 </div>
+
+<script type="text/javascript">
+var existing_asset_collection = new AssetCollection
+var existing_item_collection = new ItemCollection
+
+<% if @post.post_items.present? %>
+existing_item_collection.setPostId('<%=@post.id%>')
+  <% @post.post_items.asc(:pos).each do |a| %>
+    existing_item_collection.unshift(new Item(<%= raw a.to_json(:methods =>[:text_html])%>))
+  <% end %>
+<% end %>
+
+<% if @post.asset_collection.present? %>
+  <% @post.asset_collection.assets.each do |a| %>
+    existing_asset_collection.unshift(new Asset(<%= raw a.to_json(:methods =>[:image])%>))
+  <% end %>
+<% end %>
+</script>

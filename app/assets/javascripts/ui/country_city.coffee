@@ -6,6 +6,7 @@ CountryCity =
   
   _create: ->
     @place_element = $(@element).find(".place-field")
+    console.log @place_element
     @_attachPlaceCaller()
 
   _attachPlaceCaller: ->

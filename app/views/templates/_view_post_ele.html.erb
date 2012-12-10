@@ -1,0 +1,14 @@
+<script id="viewer-item-tpl" type="text/template">
+  <div class="item-block">
+    <div class="image">
+      [[ if (asset_model != null){ ]]
+        <img src="{{asset_model.image.image.view.url}}" alt="" />
+      [[ }]]
+    </div>
+    [[ if (text_html != "") {]]
+      <div class="text dropdown">
+        <p>{{text_html}}</p>
+      </div>
+    [[ } ]]
+  </div>
+</script>

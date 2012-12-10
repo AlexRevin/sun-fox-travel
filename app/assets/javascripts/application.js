@@ -1,7 +1,6 @@
-//= require ./jquery-1.8.2.min
-//= require jquery_ujs
 //= require ./lib
+//= require jquery_ujs
 //= require ./comp
 //= require ./ui
 //= require ./sunfox
-// = require ./posts
+//= require ./posts

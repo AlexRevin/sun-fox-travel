@@ -27,7 +27,13 @@ class Ability
     
     user ||= User.new # guest user (not logged in)
     
+    
+    # can :update, Project do |project|
+    #   project.priority < 3
+    # end
+    
     can :share, Post, :user_id => user._id
+    can :edit, Post, :user_id => user._id
     
   end
 end
