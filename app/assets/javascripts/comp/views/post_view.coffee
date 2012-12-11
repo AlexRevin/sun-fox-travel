@@ -19,9 +19,14 @@ window.PostView = class PostView extends Backbone.View
         
         
     @mode = null
+    @privacy_mode = null
 
-  ui_listener: (meth) =>
+  share_ui_listener: (meth) =>
     @mode = meth
+    @$el.empty()
+    @render()
+  privacy_ui_listener: (meth) =>
+    @privacy_mode = meth
     @$el.empty()
     @render()
     
@@ -37,8 +42,18 @@ window.PostView = class PostView extends Backbone.View
           @$el.append i
           
   _appender: (mode) ->
-    views = @item_collection.map (item) =>
+    views = @_collection().map (item) =>
       e_elem = new PostElement {model: item, parent: @, mode: @view_modes[mode] }
       el = e_elem.render().el
     views
-      
+    
+  _collection: ->
+    switch @privacy_mode
+      when "public"
+        return @item_collection.filter (i) ->
+          !i.get("private")
+      when "private"
+        return @item_collection.filter (i) ->
+          i.get("private")
+      else
+        @item_collection

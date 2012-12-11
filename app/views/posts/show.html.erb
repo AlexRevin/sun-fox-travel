@@ -19,6 +19,9 @@
             <% if can? :share, @post %> 
               <%= render :partial => "share_opts", :locals => {:post => @post} %>
             <% end %>
+            <% if can? :see, @post %>
+              <%= render :partial => "privacy_opts", :locals => {:post => @post} %>
+            <% end %>
           </div>
         </div>
       </div>

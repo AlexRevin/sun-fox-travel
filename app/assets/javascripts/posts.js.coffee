@@ -34,5 +34,7 @@ $(document).ready (args) ->
     window.post_viewer.render()
     
     $(".share-opts").share_ui({
-     callback: window.post_viewer.ui_listener
+     callback: window.post_viewer.share_ui_listener
     })
+    $(".privacy-opts").privacy_ui
+      callback: window.post_viewer.privacy_ui_listener
