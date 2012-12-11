@@ -9,7 +9,16 @@ class Post
   field :location_ids, type: Array
   field :published, type: Boolean, :default => false
   
-  embeds_many :post_items
+  embeds_many :post_items do
+    
+    def public
+      where(private: false)
+    end
+    
+    def private
+      where(private: true)
+    end
+  end
   
   def locations
     out = []

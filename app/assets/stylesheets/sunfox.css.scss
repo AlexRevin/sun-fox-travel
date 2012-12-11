@@ -340,3 +340,17 @@ ol, ul {
 .post-buttons {
   margin: 0 0 6px 0;
 }
+
+
+/* post view items */
+.item-block {
+  &.code {
+    .ta > textarea {
+      width: 100%;
+    }
+    margin: 10px 0 0 0;
+    img {
+      padding: 8px 0 0 0;
+    }
+  }
+}

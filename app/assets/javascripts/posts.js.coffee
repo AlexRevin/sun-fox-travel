@@ -32,3 +32,7 @@ $(document).ready (args) ->
       item_collection: window.item_collection
       asset_collection: window.asset_collection
     window.post_viewer.render()
+    
+    $(".share-opts").share_ui({
+     callback: window.post_viewer.ui_listener
+    })

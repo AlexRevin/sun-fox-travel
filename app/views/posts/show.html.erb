@@ -45,14 +45,13 @@ var existing_item_collection = new ItemCollection
 
 <% if @post.post_items.present? %>
 existing_item_collection.setPostId('<%=@post.id%>')
-  <% @post.post_items.asc(:pos).each do |a| %>
+  <% crit = @post.post_items %>
+  <% crit = crit.public unless can?(:see, @post) %>
+  <% crit.asc(:pos).each do |a| %>
     existing_item_collection.unshift(new Item(<%= raw a.to_json(:methods =>[:text_html])%>))
-  <% end %>
-<% end %>
-
-<% if @post.asset_collection.present? %>
-  <% @post.asset_collection.assets.each do |a| %>
-    existing_asset_collection.unshift(new Asset(<%= raw a.to_json(:methods =>[:image])%>))
+    <% if a.asset.present? %>
+      existing_asset_collection.unshift(new Asset(<%= raw a.asset.to_json(:methods =>[:image])%>))
+    <% end %>
   <% end %>
 <% end %>
 </script>

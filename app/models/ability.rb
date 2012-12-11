@@ -33,6 +33,11 @@ class Ability
     # end
     
     can :share, Post, :user_id => user._id
+    
+    can :see, Post do |post|
+      post.user_id == user._id
+    end
+    
     can :edit, Post, :user_id => user._id
     
   end

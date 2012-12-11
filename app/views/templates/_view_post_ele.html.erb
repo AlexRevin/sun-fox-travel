@@ -12,3 +12,54 @@
     [[ } ]]
   </div>
 </script>
+
+<script id="viewer-item-html-tpl" type="text/template">
+<div class="row">
+  <div class="item-block code">
+    <div class="span1">
+      [[ if (asset_model != null){ ]]
+        <img src="{{asset_model.image.image.md_thumb.url}}" alt="" />
+      [[ }]]
+    </div>
+    <div class="span8">
+      <div class="ta">
+        <textarea name="{{_id}}">[[ if (asset_model != null){ ]]&lt;img src=&quot;{{asset_model.image.image.view.url}}&quot; alt=&quot;[[if (text!=""){]] {{text.substr(0,10) + ".."}}[[}]]&quot; /&gt;[[ }]][[ if (text_html != "") {]]{{text_html}}[[ } ]]</textarea>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+<script id="viewer-item-bbcode-tpl" type="text/template">
+<div class="row">
+  <div class="item-block code">
+    <div class="span1">
+      [[ if (asset_model != null){ ]]
+        <img src="{{asset_model.image.image.md_thumb.url}}" alt="" />
+      [[ }]]
+    </div>
+    <div class="span8">
+      <div class="ta">
+        <textarea name="{{_id}}">[[ if (asset_model != null){ ]][img]{{asset_model.image.image.view.url}}[/img][[ }]]
+[[ if (text_html != "") {]]{{text}}[[ } ]]</textarea>
+      </div>
+    </div>
+  </div>
+</div>
+</script>
+
+
+<!-- This block would represent one item in a big containing textarea -->
+<script id="viewer-post-html-tpl" type="text/template">
+[[ if (asset_model != null){ ]]&lt;img src=&quot;{{asset_model.image.image.view.url}}&quot; alt=&quot;[[if (text!=""){]] {{text.substr(0,10) + ".."}}[[}]]&quot; /&gt;[[ }]][[ if (text_html != "") {]]{{- text_html}}[[ } ]]
+</script>
+
+<script id="viewer-post-html-container-tpl" type="text/template">
+<div class="row">
+  <div class="item-block code">
+    <div class="ta">
+      <textarea></textarea>
+    </div>
+  </div>
+</div>
+</script>
