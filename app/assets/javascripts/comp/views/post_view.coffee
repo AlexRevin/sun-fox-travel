@@ -36,10 +36,11 @@ window.PostView = class PostView extends Backbone.View
         @$el.html( @view_modes[@mode].outer_tpl)
         _.each @_appender(@mode), (i) =>
           @$el.find("textarea").append $(i).html()
-        @$el.find("textarea").autosize()
       else
         _.each @_appender(@mode), (i) =>
           @$el.append i
+          
+    @$el.find("textarea").autosize()
           
   _appender: (mode) ->
     views = @_collection().map (item) =>
