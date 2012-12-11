@@ -2,7 +2,7 @@ class Asset
   include Mongoid::Document
   
   field :included, type: Boolean
-  field :storage, type: String, default: "app"
+  field :storage, type: String
   
   belongs_to :post
   belongs_to :user
@@ -25,6 +25,7 @@ class Asset
   private
   
   def cdn_upload
+    self.update_atribute :storage, "app"
     Qu.enqueue Reuploaders::Rackspace, self[:_id]
   end
 end
