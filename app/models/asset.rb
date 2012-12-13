@@ -25,7 +25,7 @@ class Asset
   private
   
   def cdn_upload
-    self.update_atribute :storage, "app"
+    self.update_attribute :storage, "app"
     Qu.enqueue Reuploaders::Rackspace, self[:_id]
   end
 end
