@@ -3,6 +3,7 @@ class Asset
   
   field :included, type: Boolean
   field :storage, type: String
+  field :stat, type: Hash
   
   belongs_to :post
   belongs_to :user
