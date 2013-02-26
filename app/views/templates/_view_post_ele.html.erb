@@ -51,7 +51,7 @@
 
 <!-- This block would represent one item in a big containing textarea -->
 <script id="viewer-post-html-tpl" type="text/template">
-[[ if (asset_model != null){ ]]&lt;img src=&quot;{{asset_model.image.view.url}}&quot; alt=&quot;[[if (text!=""){]] {{text.substr(0,10) + ".."}}[[}]]&quot; /&gt;[[ }]][[ if (text_html != "") {]]{{- text_html}}[[ } ]]
+[[ if (asset_model != null){ ]]&lt;img src=&quot;{{asset_model.image.view.url}}&quot; alt=&quot;&quot; /&gt;[[ }]][[ if (text_html != "") {]]{{- text_html}}[[ } ]]
 </script>
 
 <script id="viewer-post-html-container-tpl" type="text/template">
