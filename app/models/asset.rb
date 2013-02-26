@@ -9,7 +9,7 @@ class Asset
   belongs_to :user
   belongs_to :asset_collection
 
-  mount_uploader :image, AssetUploader
+  mount_uploader :image, AssetUploader, :mount_on => :image_filename
   
   after_create :cdn_upload
   

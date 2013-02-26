@@ -2,7 +2,7 @@
   <div class="item-block">
     <div class="image">
       [[ if (asset_model != null){ ]]
-        <img src="{{asset_model.image.image.view.url}}" alt="" />
+        <img src="{{asset_model.image.view.url}}" alt="" />
       [[ }]]
     </div>
     [[ if (text_html != "") {]]
@@ -18,12 +18,12 @@
   <div class="item-block code">
     <div class="span1">
       [[ if (asset_model != null){ ]]
-        <img src="{{asset_model.image.image.md_thumb.url}}" alt="" />
+        <img src="{{asset_model.image.md_thumb.url}}" alt="" />
       [[ }]]
     </div>
     <div class="span8">
       <div class="ta">
-        <textarea name="{{_id}}">[[ if (asset_model != null){ ]]&lt;img src=&quot;{{asset_model.image.image.view.url}}&quot; alt=&quot;[[if (text!=""){]] {{text.substr(0,10) + ".."}}[[}]]&quot; /&gt;[[ }]][[ if (text_html != "") {]]{{text_html}}[[ } ]]</textarea>
+        <textarea name="{{_id}}">[[ if (asset_model != null){ ]]&lt;img src=&quot;{{asset_model.image.view.url}}&quot; alt=&quot;&quot; /&gt;[[ }]][[ if (text_html != "") {]]{{text_html}}[[ } ]]</textarea>
       </div>
     </div>
   </div>
@@ -35,12 +35,12 @@
   <div class="item-block code">
     <div class="span1">
       [[ if (asset_model != null){ ]]
-        <img src="{{asset_model.image.image.md_thumb.url}}" alt="" />
+        <img src="{{asset_model.image.md_thumb.url}}" alt="" />
       [[ }]]
     </div>
     <div class="span8">
       <div class="ta">
-        <textarea name="{{_id}}">[[ if (asset_model != null){ ]][img]{{asset_model.image.image.view.url}}[/img][[ }]]
+        <textarea name="{{_id}}">[[ if (asset_model != null){ ]][img]{{asset_model.image.view.url}}[/img][[ }]]
 [[ if (text_html != "") {]]{{text}}[[ } ]]</textarea>
       </div>
     </div>
@@ -51,7 +51,7 @@
 
 <!-- This block would represent one item in a big containing textarea -->
 <script id="viewer-post-html-tpl" type="text/template">
-[[ if (asset_model != null){ ]]&lt;img src=&quot;{{asset_model.image.image.view.url}}&quot; alt=&quot;[[if (text!=""){]] {{text.substr(0,10) + ".."}}[[}]]&quot; /&gt;[[ }]][[ if (text_html != "") {]]{{- text_html}}[[ } ]]
+[[ if (asset_model != null){ ]]&lt;img src=&quot;{{asset_model.image.view.url}}&quot; alt=&quot;[[if (text!=""){]] {{text.substr(0,10) + ".."}}[[}]]&quot; /&gt;[[ }]][[ if (text_html != "") {]]{{- text_html}}[[ } ]]
 </script>
 
 <script id="viewer-post-html-container-tpl" type="text/template">

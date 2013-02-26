@@ -2,7 +2,6 @@ class AssetsController < ApplicationController
   protect_from_forgery :except => [:create]
   
   def create
-    ap params
     if Post.find(params[:post_id]).user != current_user
       render :json => "error"
       return
